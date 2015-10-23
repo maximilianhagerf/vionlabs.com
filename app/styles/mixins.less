@@ -1,0 +1,392 @@
+.transition(@prop:all, @duration:0.2s, @ease:ease-out) {
+  -webkit-transition: @prop @duration @ease;
+  -moz-transition: @prop @duration @ease;
+  -o-transition: @prop @duration @ease;
+  transition: @prop @duration @ease;
+}
+.transform(...) {
+  -webkit-transform: @arguments;
+  -moz-transform: @arguments;
+  -o-transform: @arguments;
+  -ms-transform: @arguments;
+  transform: @arguments;
+}
+.drop-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @color: fade(#000, 50%)) {
+  -webkit-box-shadow: @x-axis @y-axis @blur @color;
+  -moz-box-shadow: @x-axis @y-axis @blur @color;
+  box-shadow: @x-axis @y-axis @blur @color;
+}
+.no-select(){
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.gradient(@color: #F5F5F5, @start: #EEE, @stop: #FFF, @startPos: 0, @stopPos: 1) {
+  background: @color;
+  background: -webkit-gradient(linear,
+   left bottom,
+   left top,
+   color-stop(@startPos, @start),
+   color-stop(@stopPos, @stop));
+  background: -ms-linear-gradient(bottom,
+    @start,
+    @stop);
+  background: -moz-linear-gradient(center bottom,
+   @start 0%,
+   @stop 100%);
+  background: -o-linear-gradient(@stop,
+   @start);
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@stop,@start));
+}
+
+.grayscale(){
+  @filterString: ~"blur(2px) grayscale(1)";
+
+  -webkit-filter: @filterString;
+  -moz-filter: @filterString;
+  -o-filter: @filterString;
+  -ms-filter: @filterString;
+  filter: @filterString;
+}
+.bw-gradient(@color: #F5F5F5, @start: 0, @stop: 255) {
+  background: @color;
+  background: -webkit-gradient(linear,
+   left bottom,
+   left top,
+   color-stop(0, rgb(@start,@start,@start)),
+   color-stop(1, rgb(@stop,@stop,@stop)));
+  background: -ms-linear-gradient(bottom,
+    rgb(@start,@start,@start) 0%,
+    rgb(@stop,@stop,@stop) 100%);
+  background: -moz-linear-gradient(center bottom,
+   rgb(@start,@start,@start) 0%,
+   rgb(@stop,@stop,@stop) 100%);
+  background: -o-linear-gradient(rgb(@stop,@stop,@stop),
+   rgb(@start,@start,@start));
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",rgb(@stop,@stop,@stop),rgb(@start,@start,@start)));
+}
+.bordered(@top-color: #EEE, @right-color: #EEE, @bottom-color: #EEE, @left-color: #EEE) {
+  border-top: solid 1px @top-color;
+  border-left: solid 1px @left-color;
+  border-right: solid 1px @right-color;
+  border-bottom: solid 1px @bottom-color;
+}
+.drop-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @color: fade(@color-dark-1, 50%)) {
+  -webkit-box-shadow: @x-axis @y-axis @blur @color;
+  -moz-box-shadow: @x-axis @y-axis @blur @color;
+  box-shadow: @x-axis @y-axis @blur @color;
+}
+.rounded(@radius: 2px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+.opacity(@opacity: 0.5) {
+  -moz-opacity: @opacity;
+  -khtml-opacity: @opacity;
+  -webkit-opacity: @opacity;
+  opacity: @opacity;
+  @opperc: @opacity * 100;
+  -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+  filter: ~"alpha(opacity=@{opperc})";
+}
+.transition-duration(@duration: 0.2s) {
+  -moz-transition-duration: @duration;
+  -webkit-transition-duration: @duration;
+  -o-transition-duration: @duration;
+  transition-duration: @duration;
+}
+.transform(...) {
+  -webkit-transform: @arguments;
+  -moz-transform: @arguments;
+  -o-transform: @arguments;
+  -ms-transform: @arguments;
+  transform: @arguments;
+}
+.transform-origin(...) {
+  -webkit-transform-origin: @arguments;
+  -moz-transform-origin: @arguments;
+  -o-transform-origin: @arguments;
+  -ms-transform-origin: @arguments;
+  transform-origin: @arguments;
+}
+.rotation(@deg:5deg){
+  .transform(rotate(@deg));
+}
+.scale(@ratio:1.5){
+  .transform(scale(@ratio));
+}
+.transition-mini(@duration:0.2s, @ease:ease-out){
+   -webkit-transition: @duration @ease;
+  -moz-transition: @duration @ease;
+  -o-transition: @duration @ease;
+  transition: @duration @ease;
+}
+.transition(@prop:all, @duration:0.2s, @ease:ease-out) {
+  -webkit-transition: @prop @duration @ease;
+  -moz-transition: @prop @duration @ease;
+  -o-transition: @prop @duration @ease;
+  transition: @prop @duration @ease;
+}
+
+.transition-multi(@value1,@value2:X,...){
+    @what: ~`"@{arguments}".replace(/(\[)?([a-zA-Z,\-\s]*)([\d\.sm]*)\s(.*?);?(\])?$/, '$2')`;
+    @when: ~`"@{arguments}".replace(/(\[)?([a-zA-Z,\-\s]*)([\d\.sm]*)\s(.*?);?(\])?$/, '$3')`;
+    @how: ~`"@{arguments}".replace(/(\[)?([a-zA-Z,\-\s]*)([\d\.sm]*)\s(.*?);?(\])?$/, '$4')`;
+
+    -webkit-property: @what;
+    -webkit-duration: @when;
+    -webkit-timing-function: @how;
+    -moz-property: @what;
+    -moz-duration: @when;
+    -moz-timing-function: @how;
+    -ms-property: @what;
+    -ms-duration: @when;
+    -ms-timing-function: @how;
+    -o-property: @what;
+    -o-duration: @when;
+    -o-timing-function: @how;
+    transition-property: @what;
+    transition-duration: @when;
+    transition-timing-function: @how;
+}
+
+.transition-properties(...) {
+  -webkit-transition: @arguments;
+  -moz-transition: @arguments;
+  -o-transition: @arguments;
+  transition: @arguments;
+}
+
+.inner-shadow(@horizontal:0, @vertical:1px, @blur:2px, @alpha: 0.4) {
+  -webkit-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+  -moz-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+  box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+}
+.box-shadow(@arguments) {
+  -webkit-box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  box-shadow: @arguments;
+}
+.box-sizing(@sizing: border-box) {
+  -ms-box-sizing: @sizing;
+  -moz-box-sizing: @sizing;
+  -webkit-box-sizing: @sizing;
+  box-sizing: @sizing;
+}
+.user-select(@argument: none) {
+  -webkit-user-select: @argument;
+  -moz-user-select: @argument;
+  -ms-user-select: @argument;
+  user-select: @argument;
+}
+.columns(@colwidth: 250px, @colcount: 0, @colgap: 50px, @columnRuleColor: #EEE, @columnRuleStyle: solid, @columnRuleWidth: 1px) {
+  -moz-column-width: @colwidth;
+  -moz-column-count: @colcount;
+  -moz-column-gap: @colgap;
+  -moz-column-rule-color: @columnRuleColor;
+  -moz-column-rule-style: @columnRuleStyle;
+  -moz-column-rule-width: @columnRuleWidth;
+  -webkit-column-width: @colwidth;
+  -webkit-column-count: @colcount;
+  -webkit-column-gap: @colgap;
+  -webkit-column-rule-color: @columnRuleColor;
+  -webkit-column-rule-style: @columnRuleStyle;
+  -webkit-column-rule-width: @columnRuleWidth;
+  column-width: @colwidth;
+  column-count: @colcount;
+  column-gap: @colgap;
+  column-rule-color: @columnRuleColor;
+  column-rule-style: @columnRuleStyle;
+  column-rule-width: @columnRuleWidth;
+}
+.translate(@x:0, @y:0) {
+  .transform(translate(@x, @y));
+}
+.background-clip(@argument: padding-box) {
+  -moz-background-clip: @argument;
+  -webkit-background-clip: @argument;
+  background-clip: @argument;
+}
+.zoom(@val) {
+  zoom: @val;
+  -moz-transform: scale(@val);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(@val);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(@val);
+  -webkit-transform-origin: 0 0;
+  transform: scale(@val); /* Standard Property */
+  transform-origin: 0 0;  /* Standard Property */
+}
+.TP-make-xs-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  display: inline-block;
+  width: percentage((@columns / @grid-columns));
+  min-height: 1px;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+}
+.TP-make-sm-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+
+  @media (min-width: @screen-sm-min) {
+    display: inline-block;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+.TP-make-md-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+
+  @media (min-width: @screen-md-min) {
+    display: inline-block;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+.TP-make-lg-column(@columns; @gutter: @grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+
+  @media (min-width: @screen-lg-min) {
+    display: inline-block;
+    width: percentage((@columns / @grid-columns));
+  }
+}
+.selectability(@val: none){
+  -moz-user-select: @val; 
+  -khtml-user-select: @val; 
+  -webkit-user-select: @val; 
+  -o-user-select: @val; 
+}
+.animation-delay(@val){
+  -moz-animation-delay: @val;
+  -webkit-animation-delay: @val;
+  -o-animation-delay: @val;
+  animation-delay: @val;
+}
+.placeholder(@color) {
+  &::-webkit-input-placeholder {
+    color: @color;
+  }
+  &:-moz-placeholder {
+    color: @color;
+  }
+}
+.float-and-cover(@pos: absolute){
+  position: @pos;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.no-border-radius(){
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.border-radius(@val){
+  -webkit-border-radius: @val;
+  -moz-border-radius: @val;
+  border-radius: @val;
+}
+.border-radiuses(@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+  -webkit-border-top-right-radius:    @topright;
+  -webkit-border-bottom-right-radius: @bottomright;
+  -webkit-border-bottom-left-radius:  @bottomleft;
+  -webkit-border-top-left-radius:     @topleft;
+
+  -moz-border-radius-topright:        @topright;
+  -moz-border-radius-bottomright:     @bottomright;
+  -moz-border-radius-bottomleft:      @bottomleft;
+  -moz-border-radius-topleft:         @topleft;
+
+  border-top-right-radius:            @topright;
+  border-bottom-right-radius:         @bottomright;
+  border-bottom-left-radius:          @bottomleft;
+  border-top-left-radius:             @topleft;
+
+  -moz-background-clip:    padding; 
+  -webkit-background-clip: padding-box; 
+  background-clip:         padding-box; 
+}
+
+.border-radius-top(@val){
+  -webkit-border-top-right-radius: @val;
+  -webkit-border-top-left-radius: @val;
+  -moz-border-radius-topright: @val;
+  -moz-border-radius-topleft: @val;
+  border-top-right-radius: @val;
+  border-top-left-radius: @val;
+}
+.border-radius-bottom(@val){
+  -webkit-border-bottom-right-radius: @val;
+  -webkit-border-bottom-left-radius: @val;
+  -moz-border-radius-bottomright: @val;
+  -moz-border-radius-bottomleft: @val;
+  border-bottom-right-radius: @val;
+  border-bottom-left-radius: @val;
+}
+
+.border-radius-left(@val){
+  -webkit-border-top-left-radius: @val;
+  -webkit-border-bottom-left-radius: @val;
+  -moz-border-radius-topright: @val;
+  -moz-border-radius-topleft: @val;
+  border-top-left-radius: @val;
+  border-bottom-left-radius: @val;
+}
+.border-radius-right(@val){
+  -webkit-border-top-right-radius: @val;
+  -webkit-border-bottom-right-radius: @val;
+  -moz-border-radius-bottomright: @val;
+  border-bottom-right-radius: @val;
+  border-top-right-radius: @val;
+}
+.normalize-list(){
+  list-style: none;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+.vl-row(@val) {
+  margin-left: @val;
+  margin-right: @val;
+}
+.blur-standard(@val:10px){
+  -webkit-filter: blur(@val);
+  -moz-filter: blur(@val);
+  -o-filter: blur(@val);
+  -ms-filter: blur(@val);
+  filter: blur(@val);
+}
+.transparent(@val:50) {
+  zoom: 1;
+  filter: alpha(opacity=@val);
+  -moz-opacity: @val / 100;
+  opacity: @val / 100;
+}
+.placeholder(@rules) {
+    &::-webkit-input-placeholder {@rules();}
+    &:-moz-placeholder {@rules();}
+    &::-moz-placeholder {@rules();}
+    &:-ms-input-placeholder {@rules();}
+}
+
+/**/
+
+.tp-border(@width: 2px 0, @style:solid, @color:fade(@color-light-3, 20%)){
+    border-width: @width;
+    border-style: @style;
+    border-color: @color;
+}

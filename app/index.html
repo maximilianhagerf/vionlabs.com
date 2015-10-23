@@ -11,14 +11,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/south-street/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
   <!-- build:js scripts/vendor/modernizr.js -->
   <script src="bower_components/modernizr/modernizr.js"></script>
   <!-- endbuild -->
 </head>
-<body>
-<!-- MAIN -->
+<body ng-app="app" ng-controller="mainCtrl">
 
 <!-- MAIN -->
+<div class="thepond">
+  <div class="thepond__wrap">
+    <div class="logo"></div>
+    
+    <ul class="themenu">
+      <li class="themenu__item" ng-repeat="item in mh">
+        <button ng-click="navigateTo(item.id)" class="button button_menu">{{item.sectionName}}</button>
+      </li>
+    </ul>
+
+    <div ng-repeat="item in mh" id="{{::item.id}}" class="section">
+      <div class="section__wrap">
+        <div class="section__wrap__head" ng-bind-html="item.sectionName"></div>
+        <div class="section__wrap__body">
+          <h1 ng-if="item.title" ng-bind-html="::item.title"></h1>
+         
+          <!-- JOBS -->
+          <div ng-if="item.jobs" class="job" ng-repeat="job in item.jobs">
+            <div class="job__wrap">
+              <div class="job__wrap__head">{{job.jobName}}</div>
+              <div class="job__wrap__body">
+                <a href="{{job.jobLink}}" target="_blank">
+                  <background ng-repeat="image in job.jobImages" image="image" imagew="'100%'" imageh="'400px'"></background>
+                </a>
+              </div>
+              <div class="job__wrap__foot">
+              </div>
+            </div>
+          </div>
+
+          <!-- THUMBS -->
+          <div ng-if="::item.galleries" ng-repeat="gallery in item.galleries" class="blue-imp-items">
+            <a class="blue-imp-items__item" ng-repeat="item in gallery.items" title="{{::item.title}}" ng-click="::openMedia(gallery.items, $index, gallery.type)">
+              <background image="item.url" imageh="'100px'"></background>
+            </a>
+          </div>
+
+        </div>
+        <div class="section__wrap__foot"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- MAIN -->
+
+<!-- BLUEIMP -->
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+        <div class="slides"></div>
+        <a class="prev disabled"><span class="pe-7s-angle-left"></span></a>
+        <a class="next disabled"><span class="pe-7s-angle-right"></span></a>
+        <a class="close disabled"><span class="text">x</span><span class="pe-7s-close-circle"></span></a>
+        <div class="modal modal-img fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body next"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left prev">
+                            <i class="glyphicon glyphicon-chevron-left"></i> Previous
+                        </button>
+                        <button type="button" class="btn btn-primary next">
+                            <i class="glyphicon glyphicon-chevron-right"></i> Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- BLUEIMP -->
 
 <!--[if lt IE 7]>
   <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -33,12 +107,46 @@
   r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
   ga('create','UA-XXXXX-X');ga('send','pageview');*/
   </script>
+  <script>
+  var canvas;
+  var ctx;
+  var exts;
 
+  try {
+    canvas = createElement('canvas');
+    ctx = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    exts = ctx.getSupportedExtensions();
+  }
+  catch (e) {
+    return;
+  }
 
+  if (ctx !== undefined) {
+    Modernizr.webglextensions = new Boolean(true);
+  }
+
+  for (var i = -1, len = exts.length; ++i < len; ){
+    Modernizr.webglextensions[exts[i]] = true;
+  }
+
+  canvas = undefined;
+  </script>
   <!-- build:js scripts/main.js -->
   <script src="bower_components/jquery/jquery.js"></script>
-  <script src="scripts/main.js"></script>
-  <script src="scripts/hello.js"></script>
+  <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+
+  <script src="bower_components/blueimp-gallery/js/blueimp-helper.js"></script>
+  <script src="bower_components/blueimp-gallery/js/blueimp-gallery.js"></script>
+  <script src="bower_components/blueimp-gallery/js/blueimp-gallery-fullscreen.js"></script>
+  <script src="bower_components/blueimp-gallery/js/blueimp-gallery-indicator.js"></script>
+  <script src="bower_components/blueimp-gallery/js/blueimp-gallery-video.js"></script>
+  <script src="bower_components/blueimp-gallery/js/blueimp-gallery-vimeo.js"></script>
+  <script src="bower_components/blueimp-gallery/js/blueimp-gallery-youtube.js"></script>
+  <!--script src="scripts/blueImpGallery.js"></script-->
+  <script src="scripts/app.js"></script>
   <!-- endbuild -->
 
   <!-- build:js scripts/vendor/bootstrap.js -->
