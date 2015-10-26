@@ -4,74 +4,76 @@ angular.module('app',
     ['ngSanitize']
     )
 
-.controller('mainCtrl', ['$scope', function ($scope) {
-    
-    /*
+.controller('mainCtrl', ['$scope', '$interval', function ($scope, $interval) {
+     /*
     VARIABLES
     *****************/
+    $scope.wHeight = window.innerHeight;
 
     $scope.mh = {
-        about: {
+        start: {
             id: 1,
-            sectionName: "Hello & welcome",
-            title: "<h1>I'm <strong>Maximilian Hagerf</strong> a passionate <strong>Digital Artist & Interaction Designer</strong> with several years of experience, spanning from the concept up to the final result. </h1><h1><strong>I’m based in Stockholm</strong>, Sweden. <small>I have my coffee like my women… microwaved three times…</small></h1>"
+            className: "start center",
+            background: "",
+            title: "<h1>We make your TV experience smarter</h1>",
+            socialLinks: [{
+                title: "Contact us now",
+                link: "https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b",
+            }]
         },
-        work: {
+        about: {
             id: 2,
-            sectionName: "My work",
-            title: "<h2></h2>",
-            jobs: [{
-                jobName: "Rummet - Oct • 2015",
-                jobLink: "http://www.rummet-music.com",
-                jobDescription: "Full graphical profile, logotype, albumcover, website",
-                jobImages: ['/images/image2.jpg'],
-            },{
-                jobName: "Vionel @ Vionlabs - Sep • 2013 UNGOING",
-                jobLink: "http://www.vionlabs.com",
-                jobDescription: "",
-                jobImages: ['/images/image3.jpg'],
-            },{
-                jobName: "Haukås",
-                jobLink: "http://www.haukas.se/",
-                jobDescription: "",
-                jobImages: ['/images/image1.jpg'],
-            },{
-                jobName: "F12-Gruppen",
-                jobLink: "",
-                jobDescription: "",
-                jobImages: ['/images/image4.jpg'],
-            }]
+            className: "about",
+            sectionName: "About Us",
+            background: "",
+            title: "<h1>We are a Stockholm based tech startup focused on entertainment.</h1>"
         },
-        /*art: {
-            id: 3,
-            sectionName: "Art & Fun",
-            galleries: [{
-                type: "images",
-                items: [{
-                    title: "photo",
-                    thumbnailUrl: '/images/photos/photo001.JPG',
-                    url: '/images/photos/photo001.JPG'
-                },{
-                    title: "photo",
-                    thumbnailUrl: '/images/photos/photo003.JPG',
-                    url: '/images/photos/photo003.JPG'
-                },{
-                    title: "photo",
-                    thumbnailUrl: '/images/photos/photo004.JPG',
-                    url: '/images/photos/photo004.JPG'
-                }]
-            }]
-        },*/
         contact: {
-            id: 4,
-            sectionName: "Contact me",
-            title: "Don't be shy",
+            id: 3,
+            className: "contact center",
+            sectionName: "Get in touch",
+            title: "<h1>Interested in what we do or need more information? Send us an e-mail and we would love to help you out!</h1>",
             email: "maximilian.hagerf@gmail.com",
             phone: "+46 73-6 24 99 34",
-            linkedIn: "https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b",
+            socialLinks: [{
+                title: "Facebook",
+                icon: "fui-facebook",
+                link: "https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b",
+            },{
+                title: "Twitter",
+                icon: "fui-twitter",
+                link: "https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b",
+            },{
+                title: "LinkedIn",
+                icon: "fui-linkedin",
+                link: "https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b",
+            }]
+        },
+        location: {
+            id: 4,
+            className: "location",
+            sectionName: "Contact",
+            // title: "<h1>Interested in what we do or need more information? Send us an e-mail and we would love to help you out!</h1>",
+            email: "maximilian.hagerf@gmail.com",
+            phone: "+46 73-6 24 99 34",
+            info: [{
+                title: "EMAIL ADDRESS",
+                text: "St Eriksgatan 63",
+            },{
+                title: "TELEPHONE NUMBER",
+                text: "08-xxx xxxx",
+            },{
+                title: "PHYSICAL ADDRESS",
+                text: "St Eriksgatan 63",
+            }]
         }
+        
     };
 
+    /*
+    INIT
+    *****************/
+   
     /*
     FUNCTIONS
     *****************/
@@ -79,7 +81,7 @@ angular.module('app',
     $scope.navigateTo = function(target){
         $('html, body').animate({
             scrollTop: $("#" + target).offset().top
-        }, 1000);
+        }, 500);
     };
 
     $scope.openMedia = function(gallery, startIndex, contentType, autoplay) {
@@ -163,12 +165,10 @@ angular.module('app',
         restrict: 'E',
         scope: {
             image: '=',
-            imagew: '=',
-            imageh: '=',
             options: '@',
         },
         replace: true,
-        template: '<div class="background" ng-style="{\'width\': imagew, \'height\': imageh,}"><div class="background__image" ng-style="{\'background-image\': \'url(\' + url + \')\'}"></div></div>',
+        template: '<div class="background"><div class="background__image" ng-style="{\'background-image\': \'url(\' + url + \')\'}"></div></div>',
         link: function (scope, element, attrs, tabsCtrl) {
 
             element.addClass('tp-hide');

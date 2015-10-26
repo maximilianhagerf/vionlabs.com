@@ -6,43 +6,63 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title></title>
+  <title>VIONLABS</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/south-street/jquery-ui.css" id="theme">
-<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+  <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
   <!-- build:js scripts/vendor/modernizr.js -->
   <script src="bower_components/modernizr/modernizr.js"></script>
   <!-- endbuild -->
 </head>
 <body ng-app="app" ng-controller="mainCtrl">
+<!-- <div class="rain"></div> -->
 
 <!-- MAIN -->
 <div class="thepond">
   <div class="thepond__wrap">
-    <div class="logo"></div>
     
     <ul class="themenu">
-      <li class="themenu__item" ng-repeat="item in mh">
+      <div class="logo"><img class="logo__content" src="images/vionlabs.png"></div>
+      
+      <li class="themenu__item" ng-repeat="item in mh" ng-if="item.sectionName">
         <button ng-click="navigateTo(item.id)" class="button button_menu">{{item.sectionName}}</button>
       </li>
     </ul>
 
-    <div ng-repeat="item in mh" id="{{::item.id}}" class="section">
+    <div ng-repeat="item in mh" id="{{::item.id}}" class="section {{item.className}}" style="height: {{wHeight}}px">
+      <background class="background_big" ng-repeat="image in job.jobImages" image="item.background"></background>
+
       <div class="section__wrap">
         <div class="section__wrap__head" ng-bind-html="item.sectionName"></div>
         <div class="section__wrap__body">
           <h1 ng-if="item.title" ng-bind-html="::item.title"></h1>
-         
+          
+          <!-- SOCIAL -->
+          <a ng-if="item.socialLinks.length > 0" class="button button_social-link" href="{{link.link}}" title="{{link.title}}" ng-repeat="link in item.socialLinks">
+            <span class="button_social-link__wrap">
+              <span ng-if="link.icon" class="button_social-link__wrap__icon {{link.icon}}"></span>
+              <span class="button_social-link__wrap__text">{{link.title}}</span>
+            </span>
+          </a>
+
+          <!-- INFO -->
+          <span ng-if="item.info.length > 0" class="info" href="{{info.link}}" title="{{link.title}}" ng-repeat="info in item.info">
+            <span class="info__wrap">
+              <span class="info__wrap__text">{{info.title}}</span>
+              <span class="info__wrap__text">{{info.text}}</span>
+            </span>
+          </span>
+
           <!-- JOBS -->
           <div ng-if="item.jobs" class="job" ng-repeat="job in item.jobs">
             <div class="job__wrap">
-              <div class="job__wrap__head">{{job.jobName}}</div>
+              <div class="job__wrap__head"><h5 class="job__wrap__head__item job__wrap__head__item_left"><span class="job__wrap__head__item_left__wrap">{{job.jobName}}</span></h5><h5 class="job__wrap__head__item job__wrap__head__item_right">{{job.jobDescription}}</h5></div>
               <div class="job__wrap__body">
                 <a href="{{job.jobLink}}" target="_blank">
-                  <background ng-repeat="image in job.jobImages" image="image" imagew="'100%'" imageh="'400px'"></background>
+                  <background class="background_big" ng-repeat="image in job.jobImages" image="image"></background>
                 </a>
               </div>
               <div class="job__wrap__foot">
@@ -61,6 +81,8 @@
         <div class="section__wrap__foot"></div>
       </div>
     </div>
+
+    <!-- <div class="footer">© copyright 2015</div> -->
 
   </div>
 </div>
@@ -118,26 +140,28 @@
     exts = ctx.getSupportedExtensions();
   }
   catch (e) {
-    return;
   }
 
   if (ctx !== undefined) {
     Modernizr.webglextensions = new Boolean(true);
   }
-
-  for (var i = -1, len = exts.length; ++i < len; ){
-    Modernizr.webglextensions[exts[i]] = true;
+  if(exts !== undefined){
+    for (var i = -1, len = exts.length; ++i < len; ){
+      Modernizr.webglextensions[exts[i]] = true;
+    }
   }
 
   canvas = undefined;
+
   </script>
+
   <!-- build:js scripts/main.js -->
   <script src="bower_components/jquery/jquery.js"></script>
   <script src="bower_components/jquery-ui/jquery-ui.js"></script>
-
+  <script src="bower_components/jquery-ripples/jquery.ripples.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-
   <script src="bower_components/blueimp-gallery/js/blueimp-helper.js"></script>
   <script src="bower_components/blueimp-gallery/js/blueimp-gallery.js"></script>
   <script src="bower_components/blueimp-gallery/js/blueimp-gallery-fullscreen.js"></script>
@@ -145,7 +169,6 @@
   <script src="bower_components/blueimp-gallery/js/blueimp-gallery-video.js"></script>
   <script src="bower_components/blueimp-gallery/js/blueimp-gallery-vimeo.js"></script>
   <script src="bower_components/blueimp-gallery/js/blueimp-gallery-youtube.js"></script>
-  <!--script src="scripts/blueImpGallery.js"></script-->
   <script src="scripts/app.js"></script>
   <!-- endbuild -->
 

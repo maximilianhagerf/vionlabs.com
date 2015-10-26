@@ -20,35 +20,59 @@ body{
 	// background: @color-dark-2;
 	background: @color-dark-2;
 	color: @color-gray-2;
-	padding: @grid-lg;
+	// padding: @grid-xl * 2;
 	font-weight: 600;
 	font-size: 16px;
+	
+}
+.rain{
+	.blur(20px);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('../images/background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .thepond{
 	position: relative;
-	padding: @grid-xl;
-	background: @color-dark-1;
-	max-width: 1200px;
-	margin: 0 auto;
-	
+	background: fade(@color-dark-1, 85%);
+	// max-width: 1200px;
+	// margin: 0 auto;
+
 	&__wrap{
 		position: relative;
 	}
 }
 
-.logo{
-	background: @color-light-1;
-	width: 200px;
-	height: 40px;
-}
 .section{
-	padding: @grid-xl 0;
-
+	padding: 0 200px;
+	display: table;
+	width: 100%;
+	min-height: 500px;
+	&:nth-of-type(even){
+		background-color: #fff;
+	}
 	&__wrap{
-		&__head{}
+		display: table-cell;
+		vertical-align: middle;
+
+		&__head{
+			text-transform: uppercase;
+		}
 		&__body{}
 		&__foot{}
+	}
+	&.center{text-align: center;}
+
+	&.start{}
+	&.contact{}
+	&.location{
+		max-height: 400px;
+		min-height: 400px;
 	}
 }
 
@@ -58,9 +82,25 @@ body{
 	margin-right: -@grid-xl;
 	&__wrap{
 		&__head{ 
-			text-align: right;
-			padding: @grid-lg 0;
-			margin-right: @grid-xl;
+			padding: @grid-md @grid-xl @grid-md @grid-xl;
+			
+			&__item{
+				width: 50%;
+				display: inline-block;
+				&_left{
+					text-transform: uppercase;
+					&__wrap{
+						background-color: @color-highlight-1;
+						color: @color-dark-1;
+						padding: @grid-xs @grid-sm;
+						font-weight: 600;
+						text-transform: uppercase;
+					}
+				}
+				&_right{
+					text-align: right;
+				}
+			}
 		}
 		&__body{
 			// .tp-border();
@@ -69,18 +109,52 @@ body{
 	}
 }
 
+.info{
+	display: block;
+	margin: @grid-md 0;
+	&__wrap{
+		&__icon,
+		&__text{
+			display: block;
+		}
+
+		&__icon{
+
+		}
+		&__text{
+
+		}
+	}
+}
+
+.logo{
+	text-align: center;
+	display: inline-block;
+	font-family: "Indie Flower";
+	color: @color-dark-3;
+	font-size: 30px;
+	line-height: 0;
+	padding: 10px 0;
+
+	&__content{
+		width: 140px;
+	}
+}
+
 .themenu{
+	.logo{float:left;}
 	position: absolute;
 	// top: @grid-md + @grid-xl;
 	// right: @grid-md + @grid-xl;
-	top: -(@grid-xs / 2);
+	width: 100%;
+	top: 0;
 	right: 0;
 	list-style: none;
 	margin: 0;
-	padding: 0;
+	padding: 20px 200px;
+
 	text-align: right;
 	z-index: 100;
-	background-color: @color-dark-1;
 	&__item{
 		display: inline-block;
 	}
@@ -91,6 +165,10 @@ body{
 	border: none;
 	background-color: @color-light-1;
 	color: @color-dark-2;
+	text-decoration: none;
+	&:hover{
+		text-decoration: none;
+	}
 
 	&_menu{
 		.transition(all, .5s, ease);
@@ -102,6 +180,36 @@ body{
 		background: none;
 		color: @color-light-2;
 
+		&:hover{
+			background-color: @color-light-2;
+			color: @color-dark-1;
+		}
+	}
+
+	&_social-link{
+		margin: @grid-sm 0;
+		padding: 0 @grid-sm;
+		font-size: 30px;
+		display: inline-block;
+		&__wrap{
+			display: table;
+			height: 60px;
+			&__icon,
+			&__text{
+				display: table-cell;
+				vertical-align: middle;
+			}
+			&__icon{
+				position: relative;
+				top: 1px;
+			}
+			&__text{
+				font-size: 20px;
+				padding: 0 @grid-xs;
+			}
+			
+
+		}
 		&:hover{
 			background-color: @color-light-2;
 			color: @color-dark-1;
@@ -119,6 +227,10 @@ body{
 		left: 0;
 		width: 100%;
 		height: 100%;
+	}
+	&_big{
+		width: 100%;
+		height: 400px;
 	}
 }
 
