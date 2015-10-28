@@ -2,12 +2,11 @@
 
 VionLabs AB website - 2015
 
-### Styles & Script Libs
+### Scripts & styles libraries used 
 
 - angular 1.4.7
 - angular-animate 1.4.7
 - angular-inview 1.10.0
-
 - bootstrap 3.0.0
 - blueimp-gallery
 - modernizr 2.6.2
@@ -16,5 +15,5 @@ VionLabs AB website - 2015
 - flat-ui 2.2.2
 - animate.less
 
-
+# Footnote
 [Check out our VIONEL.COM!](https://www.vionel.com)
