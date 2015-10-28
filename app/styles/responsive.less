@@ -2,16 +2,23 @@
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
-
+    .section{
+        padding: 0 100px;
+    }
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
-
+    .section{
+        padding: 0 50px;
+    }
 }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
+    .section{
+        padding: 0 5px;
+    }
     .themenu{display: none;}
     .thepond{
         padding: @grid-xs;
@@ -30,14 +37,21 @@
         text-align: left;
     }
     .logo{width: 100%;}
-    .background_big{
-        height: 150px;
-    }
+    // .background_big{
+    //     height: 150px;
+    // }
     .job__wrap__head {
         padding: 5px 50px;
     }
     .job {
         padding: 15px 0;
+    }
+    .button_social-link {
+        margin: 10px 3px;
+        padding: 0 12px;
+    }
+    .button_social-link__wrap__text{
+        display: none;
     }
 }
 

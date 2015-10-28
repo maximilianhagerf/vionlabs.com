@@ -390,3 +390,28 @@
     border-style: @style;
     border-color: @color;
 }
+   /* ~'@{property}';*/
+
+.custom-loop( 
+  @base-value:@n; 
+  @n;  
+  @j : 1; 
+  @step-size:1; 
+  @selector:~".span-"; 
+  @property) when not(@n=0)  {
+
+  @value: round(@step-size*@j,3);
+  @{selector}@{j}{
+    @property();
+  }
+
+  .custom-loop(
+    @base-value, 
+    (@n - 1), 
+    (@j + 1), 
+    @step-size,  
+    @selector, 
+    @property
+  );
+}
+

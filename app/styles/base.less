@@ -25,38 +25,33 @@ body{
 	font-size: 16px;
 	
 }
-.rain{
-	.blur(20px);
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: url('../images/background.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
-}
 
-.thepond{
+.vionlabs{
 	position: relative;
 	background: fade(@color-dark-1, 85%);
-	// max-width: 1200px;
-	// margin: 0 auto;
+	opacity: 0;
 
 	&__wrap{
 		position: relative;
 	}
+	&__rendered{
+		opacity: 1;
+	}
 }
 
 .section{
+	position: relative;
 	padding: 0 200px;
 	display: table;
 	width: 100%;
 	min-height: 500px;
+	opacity: 0;
+
 	&:nth-of-type(even){
 		background-color: #fff;
 	}
 	&__wrap{
+		position: relative;
 		display: table-cell;
 		vertical-align: middle;
 
@@ -73,6 +68,11 @@ body{
 	&.location{
 		max-height: 400px;
 		min-height: 400px;
+	}
+
+	&.inview{
+		.animated; 
+		.fadeIn; 
 	}
 }
 
@@ -128,6 +128,7 @@ body{
 }
 
 .logo{
+
 	text-align: center;
 	display: inline-block;
 	font-family: "Indie Flower";
@@ -159,6 +160,31 @@ body{
 		display: inline-block;
 	}
 }
+.button-container{
+	display: inline-block;
+
+
+}
+
+.delayed {
+  .transition(all, 0.3s, linear);
+  opacity: 1;
+
+  &.ng-hide-add, 
+  &.ng-hide-remove{
+  	opacity: 0;
+  }
+
+  &.ng-hide {
+  	opacity: 0;
+  }
+}
+.custom-loop( 
+	@base-value:1,
+	@n: 5, 
+	@step-size: 0.4,
+	@property: { .animation-delay( ~"@{value}s"); }, 
+	@selector: ~".delayed_");
 
 .button{
 	outline: none;
@@ -166,6 +192,9 @@ body{
 	background-color: @color-light-1;
 	color: @color-dark-2;
 	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: 600;
+	&:focus,
 	&:hover{
 		text-decoration: none;
 	}
@@ -193,7 +222,7 @@ body{
 		display: inline-block;
 		&__wrap{
 			display: table;
-			height: 60px;
+			height: 50px;
 			&__icon,
 			&__text{
 				display: table-cell;
@@ -229,8 +258,11 @@ body{
 		height: 100%;
 	}
 	&_big{
+		position: absolute;
 		width: 100%;
-		height: 400px;
+		height: 100%;
+		top: 0;
+		left: 0;
 	}
 }
 
