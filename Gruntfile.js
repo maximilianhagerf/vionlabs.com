@@ -26,6 +26,13 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
         tasks: ['less']
       },
+      js: {
+        files: ['<%= yeoman.app %>/scripts/app.js'],
+        tasks: ['jshint'],
+        options: {
+          livereload: '<%= connect.options.livereload %>'
+        }
+      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -95,9 +102,9 @@ module.exports = function (grunt) {
       },
       all: [
         'Gruntfile.js',
-        '<%= yeoman.app %>/scripts/{,*/}*.js',
-        '!<%= yeoman.app %>/scripts/vendor/*',
-        'test/spec/{,*/}*.js'
+        '<%= yeoman.app %>/scripts/app.js',
+        // '!<%= yeoman.app %>/scripts/vendor/*',
+        // 'test/spec/{,*/}*.js'
       ]
     },
     mocha: {
@@ -138,7 +145,7 @@ module.exports = function (grunt) {
           src: [
             '<%= yeoman.dist %>/scripts/{,*/}*.js',
             '<%= yeoman.dist %>/styles/{,*/}*.css',
-            '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+            // '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
             '<%= yeoman.dist %>/fonts/{,*/}*.*'
           ]
         }

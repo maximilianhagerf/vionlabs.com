@@ -5,114 +5,198 @@ angular.module('app', ['ngSanitize',
     'angular-inview',
     ])
 
-.controller('mainCtrl', ['$scope', '$interval', function ($scope, $interval) {
+.controller('mainCtrl', ['$scope', function ($scope) {
      /*
     VARIABLES
     *****************/
-    $scope.wHeight = window.innerHeight;
+    $scope.wHeight = window.innerHeight - 78;
+    $scope.inViewOffset = (window.innerWidth<769)?0:300;
 
-    $scope.mh = {
-        start: {
-            id: 1,
-            className: "start center",
-            background: "",
-            title: "<h1>We make your TV experience smarter</h1>",
-            socialLinks: [{
-                title: "ABOUT US",
-                icon: "fui-info-circle",
-                linkID: "2",
+    $scope.vionlabs = {
+        info: {
+            email: 'info@vionlabs.com',
+            phone: '08-xxx xxxx',
+            adress: 'St Eriksgatan 63',
+            backgroundImage: 'images/backgrounds/map.jpg',
+            copyright: '© Copyright VionLabs 2015.'
+        },
+        sections: {
+            start: {
+                id: 1,
+                className: 'center',
+                sectionName: 'home',
+                backgroundImage: 'images/budapest.jpg',
+                title: '<h1>We enhance your <br>VOD & TV service</h1>',
+                paragraphs: [{
+                    id: 1,
+                    text: 'We provide a unique and customized <strong>search and recommendation engine</strong> for TV and movies that truly understands the content and the user behavior.'
+                }],
+                socialLinks: [{
+                    id: 1,
+                    title: 'CONTACT US',
+                    icon: 'fi-compass',
+                    linkID: '4',
+                }],
+                layers: [{
+                    id: 1,
+                    image: 'images/vionlabs.png',
+                    className: 'center-top'
+                }]
+            },
+            about: {
+                id: 2,
+                className: 'center white',
+                sectionName: 'About',
+                title: '<h1>WHAT WE DO</h1>',
+            // backgroundImage: 'images/vionel.jpg',
+            // layers: [{
+            //     id: 1,
+            //     width: '300px',
+            //     image: 'images/iphone_vionel-small.png',
+            //     className: 'right'
+            // }],
+            paragraphs: [{
+                id: 1,
+                text: 'We are passionate about movies, data and great viewer experience. That’s why we have created a solution that <strong>analyzes movies and TV series</strong> to understand the characteristics which creates a unique fingerprint. We help you as a customer to present the right content at the right time creating a higher engagement and more satisfied/loyal consumers, leading to a better churn rate'
+            },{
+                id: 2,
+                text: 'We have 4 products but we give you the freedom of choosing what is right for you...'
+            }],
+            infoCircle:[{
+                id: 1,
+                text: 'Discovery'
+            },{
+                id: 2,
+                text: 'Metadata'
+            },{
+                id: 3,
+                text: 'Bitframe'
+            },{
+                id: 4,
+                text: 'Vionel Insight'
             }]
         },
-        about: {
-            id: 2,
-            className: "about",
-            sectionName: "About Us",
-            background: "",
-            title: "<h1>We are a Stockholm based tech startup focused on entertainment.</h1>"
+        vionel: {
+            id: 3,
+            className: 'left',
+            sectionName: 'vionel',
+            title: '<h1>What\'s <br>Vionel™?</h1>',
+            backgroundImage: 'images/vionel.jpg',
+            paragraphs: [{
+                id: 1,
+                text: 'It is our in-house product for demonstrating and showcasing our vast datasets & it\'s customizable capabilities.'
+            },{
+                id: 2,
+                text: 'Vionel™ exists as an app for iPhone, and on the web.'
+            }],
+            layers: [{
+                id: 1,
+                width: '300px',
+                image: 'images/iphone_vionel-small.png',
+                className: 'right'
+            }],
+            socialLinks: [{
+                id: 1,
+                title: 'VIONEL.com',
+                icon: 'fi-mail',
+                link: 'vionel.com',
+            }]
+        },
+        work: {
+            id: 4,
+            className: 'right',
+            sectionName: 'Career',
+            backgroundImage: 'images/independence.jpg',
+            title: '<h1>join our<br>adventure</h1>',
+            paragraphs: [{
+                id: 1,
+                text: 'We are always looking for new talents to work with, send and e-mail and tell us about yourself!'
+            }],
+            socialLinks: [{
+                id: 1,
+                title: 'E-mail',
+                icon: 'fi-mail',
+                link: 'mailto:info@vionlabs.com',
+            }],
+            layers: [{
+                id: 1,
+                image: 'images/treasure-map.png',
+                className: 'left'
+            }]
         },
         contact: {
-            id: 3,
-            className: "contact center",
-            sectionName: "Get in touch",
-            title: "<h1>Interested in what we do or need more information? Send us an e-mail and we would love to help you out!</h1>",
-            email: "maximilian.hagerf@gmail.com",
-            phone: "+46 73-6 24 99 34",
+            id: 5,
+            className: 'contact center',
+            backgroundImage: 'images/info-2.jpg',
+            sectionName: 'Contact',
+            title: '<h1>Interested in what we do or need more information?</h1>',
+            email: 'maximilian.hagerf@gmail.com',
+            phone: '+46 73-6 24 99 34',
+            paragraphs: [{
+                id: 1,
+                text: 'Send us an e-mail and we would love to help you out!'
+            }],
             socialLinks: [{
-                title: "E-mail",
-                icon: "fui-mail",
-                link: "mailto:info@vionlabs.com",
+                id: 1,
+                title: 'E-mail',
+                icon: 'fi-mail',
+                link: 'mailto:info@vionlabs.com',
             },{
-                title: "Facebook",
-                icon: "fui-facebook",
-                link: "https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b",
+                id: 2,
+                title: 'Facebook',
+                icon: 'fi-social-facebook',
+                link: 'https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b',
             },{
-                title: "Twitter",
-                icon: "fui-twitter",
-                link: "https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b",
-            }]
-        },
-        location: {
-            id: 4,
-            backgroundImage: "/images/backgrounds/map.jpg",
-            className: "location",
-            // sectionName: "Visit Us",
-            // title: "<h1>Interested in what we do or need more information? Send us an e-mail and we would love to help you out!</h1>",
-            email: "maximilian.hagerf@gmail.com",
-            phone: "+46 73-6 24 99 34",
-            info: [{
-                title: "EMAIL ADDRESS",
-                text: "info@vionlabs.com",
-            },{
-                title: "TELEPHONE NUMBER",
-                text: "08-xxx xxxx",
-            },{
-                title: "PHYSICAL ADDRESS",
-                text: "St Eriksgatan 63",
+                id: 3,
+                title: 'Twitter',
+                icon: 'fi-social-twitter',
+                link: 'https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b',
             }]
         }
-        
+    }
     };
 
     /*
     INIT
     *****************/
-   
-
+    if ((window.matchMedia && (window.matchMedia('only screen and (min-resolution: 124dpi), only screen and (min-resolution: 1.3dppx), only screen and (min-resolution: 48.8dpcm)').matches || window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 2.6/2), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (min-device-pixel-ratio: 1.3)').matches)) || (window.devicePixelRatio && window.devicePixelRatio > 1.3)) {
+        angular.element('body').addClass('high-density');
+    }
     /*
     FUNCTIONS
     *****************/
     $scope.slides = function() {
-        $scope.slides = "rendered";
-    }
+        $scope.slides = 'rendered';
+    };
 
     $scope.inviewFun = function(item, index){
         var element = ('#section' + (index + 1)).toString();
-        // console.log("item",item, "index", index, "element",element);
+        // console.log('item',item, 'index', index, 'element',element);
         angular.element(element).addClass('inview');
-        
+        $scope.currentSection = index;
         item.isActive = true;
     };
 
     $scope.navigateTo = function(target){
         $('html, body').animate({
-            scrollTop: $("#section" + target).offset().top
+            scrollTop: $('#section' + target).offset().top - 78
         }, 500);
     };
 
-    $scope.openMedia = function(gallery, startIndex, contentType, autoplay) {
+    $scope.openMedia = function(gallery, index, contentType, auto) {
         console.log('gallllery: ', gallery);
-        var mediaGallery = [], videoId,
-            autoplay = autoplay === 1,
-            startIndex = startIndex === undefined ? 0 : startIndex;
+        var mediaGallery = [], videoId, image,
+            autoplay = auto === 1,
+            startIndex = index === undefined ? 0 : startIndex;
 
         if(contentType === 'video') {
 
             for (var i=0; i < gallery.length; i++) {
-                var videoId = gallery[i].url.split('v=')[1].split('&')[0],
-                    image = gallery[i].thumbnailUrl ? gallery[i].thumbnailUrl : null;
+                videoId = gallery[i].url.split('v=')[1].split('&')[0];
+                image = gallery[i].thumbnailUrl ? gallery[i].thumbnailUrl : null;
                 
                 mediaGallery.push({
-                    title: "" + (i+1) + "/" + gallery.length,
+                    title: '' + (i+1) + '/' + gallery.length,
                     href: gallery[i].url,
                     type: 'text/html',
                     youtube: videoId,
@@ -123,10 +207,10 @@ angular.module('app', ['ngSanitize',
         }else if(contentType === 'images' ) {
             console.log('Loool: ', gallery);
 
-            for (var i=0; i < gallery.length; i++) {
+            for (var x=0; x < gallery.length; x++) {
                 mediaGallery.push({
-                    title: "" + (i+1) + "/" + gallery.length,
-                    href: gallery[i].url
+                    title: '' + (x+1) + '/' + gallery.length,
+                    href: gallery[x].url
                 });
             }
 
@@ -149,7 +233,9 @@ angular.module('app', ['ngSanitize',
     };
 
 }])
-
+/*
+RUN
+**********/
 .run([ '$rootScope', function($rootScope) {
     
     // browser & version detection
@@ -169,7 +255,9 @@ angular.module('app', ['ngSanitize',
     })();
 
 }])
-
+/*
+factories
+**********/
 .factory('preload', ['$q', function ($q) {
     return function (url) {
         var deffered = $q.defer(),
@@ -195,6 +283,9 @@ angular.module('app', ['ngSanitize',
     };
 }])
 
+/*
+directives
+**********/
 .directive('background', ['preload', function (preload) {
     return {
         restrict: 'E',
@@ -204,7 +295,7 @@ angular.module('app', ['ngSanitize',
         },
         replace: true,
         template: '<div class="background"><div class="background__image" ng-style="{\'background-image\': \'url(\' + url + \')\'}"></div></div>',
-        link: function (scope, element, attrs, tabsCtrl) {
+        link: function (scope, element) {
 
             element.addClass('tp-hide');
 
@@ -229,7 +320,7 @@ angular.module('app', ['ngSanitize',
     };
 }])
 
-.directive('onFinishRender', function ($timeout) {
+.directive('onFinishRender', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attr) {
@@ -237,33 +328,32 @@ angular.module('app', ['ngSanitize',
                 scope.$evalAsync(attr.onFinishRender);
             }
         }
-    }
+    };
 })
 
-/*
- RESIZE
- **************/
-.directive('resize', ['$window', '$rootScope', function ($window, $rootScope) {
+.directive('resize', ['$window', function ($window) {
     return function (scope) {
-        let w = angular.element($window);
+        var w = angular.element($window);
         scope.getWindowDimensions = function () {
             return {'h': w.height(), 'w': w.width()};
         };
         scope.$watch(scope.getWindowDimensions, function (newValue) {
+            // scope.w = newValue.w;
             // scope.windowHeight = newValue.h;
-            let d;
+            var d;
 
             if(newValue.w < 768){
-                d = "sm";
+                d = 'sm';
+                scope.inViewOffset = 0;
             }
             if(newValue.w > 767 && newValue.w < 991){
-                d = "md";
+                d = 'md';
             }
             if(newValue.w > 992 && newValue.w < 1199){
-                d = "lg";
+                d = 'lg';
             }
             if(newValue.w > 1200){
-                d = "xl";
+                d = 'xl';
             }
             if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && newValue.w < 768) {
                 scope.isDevice = true;
