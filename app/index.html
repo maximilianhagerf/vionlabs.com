@@ -70,8 +70,8 @@
           <div class="buttons">
             <div ng-show="item.isActive" 
             class="buttons__wrap delayed delayed_{{::$index}} " 
-            ng-if="item.socialLinks.length > 0" 
-            ng-repeat="link in item.socialLinks | 
+            ng-if="item.buttons.length > 0" 
+            ng-repeat="link in item.buttons | 
             orderBy: orderProp : orderReverse | 
             limitTo: config.itemsDisplayedInList 
             track by link.id">
@@ -83,7 +83,14 @@
                 </span>
               </a>
 
-              <button ng-if="link.linkID" class="button button_social-link" ng-click="navigateTo(link.linkID)" title="{{link.title}}" >
+              <button ng-if="link.linkId" class="button button_social-link" ng-click="navigateTo(link.linkID)" title="{{link.title}}" >
+                <span class="button_social-link__wrap">
+                  <span ng-if="link.icon" class="button_social-link__wrap__icon {{link.icon}}"></span>
+                  <span class="button_social-link__wrap__text">{{link.title}}</span>
+                </span>
+              </button>
+
+              <button ng-if="link.modalId" class="button button_social-link" ng-click="navigateTo(link.linkID)" title="{{link.title}}" >
                 <span class="button_social-link__wrap">
                   <span ng-if="link.icon" class="button_social-link__wrap__icon {{link.icon}}"></span>
                   <span class="button_social-link__wrap__text">{{link.title}}</span>

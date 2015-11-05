@@ -9,7 +9,7 @@ angular.module('app', ['ngSanitize',
      /*
     VARIABLES
     *****************/
-    $scope.wHeight = window.innerHeight - 78;
+    $scope.wHeight = window.innerHeight - 58;
     $scope.inViewOffset = (window.innerWidth<769)?0:300;
 
     $scope.vionlabs = {
@@ -31,11 +31,11 @@ angular.module('app', ['ngSanitize',
                     id: 1,
                     text: 'We provide a unique and customized <strong>search and recommendation engine</strong> for TV and movies that truly understands the content and the user behavior.'
                 }],
-                socialLinks: [{
+                buttons: [{
                     id: 1,
                     title: 'CONTACT US',
                     icon: 'fi-compass',
-                    linkID: '4',
+                    linkId: '4',
                 }],
                 layers: [{
                     id: 1,
@@ -48,112 +48,124 @@ angular.module('app', ['ngSanitize',
                 className: 'center white',
                 sectionName: 'About',
                 title: '<h1>WHAT WE DO</h1>',
-            // backgroundImage: 'images/vionel.jpg',
-            // layers: [{
-            //     id: 1,
-            //     width: '300px',
-            //     image: 'images/iphone_vionel-small.png',
-            //     className: 'right'
-            // }],
-            paragraphs: [{
+
+                paragraphs: [{
+                    id: 1,
+                    text: 'We are passionate about movies, data and great viewer experience. That’s why we have created a solution that <strong>analyzes movies and TV series</strong> to understand the characteristics which creates a unique fingerprint. We help you as a customer to present the right content at the right time creating a higher engagement and more satisfied/loyal consumers, leading to a better churn rate'
+                },{
+                    id: 2,
+                    text: 'We have 4 products but we give you the freedom of choosing what is right for you...'
+                }],
+                infoCircle:[{
+                    id: 1,
+                    text: 'Discovery'
+                },{
+                    id: 2,
+                    text: 'Metadata'
+                },{
+                    id: 3,
+                    text: 'Bitframe'
+                },{
+                    id: 4,
+                    text: 'Vionel Insight'
+                }]
+            },
+            vionel: {
+                id: 3,
+                className: 'left',
+                sectionName: 'vionel',
+                title: '<h1>What\'s <br>Vionel™?</h1>',
+                backgroundImage: 'images/vionel.jpg',
+                paragraphs: [{
+                    id: 1,
+                    text: 'It is our in-house product for demonstrating and showcasing our vast datasets & it\'s customizable capabilities.'
+                },{
+                    id: 2,
+                    text: 'Vionel™ exists as an app for iPhone, and on the web.'
+                }],
+                layers: [{
+                    id: 1,
+                    width: '300px',
+                    image: 'images/iphone_vionel-small.png',
+                    className: 'right'
+                }],
+                buttons: [{
+                    id: 1,
+                    title: 'VIONEL.com',
+                    icon: 'fi-mail',
+                    link: 'vionel.com',
+                }]
+            },
+            career: {
+                id: 4,
+                className: 'left',
+                sectionName: 'Career',
+                backgroundImage: 'images/independence.jpg',
+                title: '<h1>Do you want to change the world together with us?</h1>',
+                layers: [{
+                    id: 1,
+                    width: '200px',
+                    image: 'images/treasure-map.png',
+                    className: 'right'
+                }],
+                paragraphs: [{
+                    id: 1,
+                    text: 'We are always on the hunt for new talents to join VIONLABS'
+                }],
+                buttons: [{
+                    id: 1,
+                    title: 'Read more',
+                    icon: 'fi-page',
+                    modalId: 1,
+                }]
+            },
+            contact: {
+                id: 5,
+                className: 'contact center',
+                backgroundImage: 'images/info-2.jpg',
+                sectionName: 'Contact',
+                title: '<h1>Interested in what we do or need more information?</h1>',
+                email: 'maximilian.hagerf@gmail.com',
+                phone: '+46 73-6 24 99 34',
+                paragraphs: [{
+                    id: 1,
+                    text: 'Send us an e-mail and we would love to help you out!'
+                }],
+                buttons: [{
+                    id: 1,
+                    title: 'E-mail',
+                    icon: 'fi-mail',
+                    link: 'mailto:info@vionlabs.com',
+                },{
+                    id: 2,
+                    title: 'Facebook',
+                    icon: 'fi-social-facebook',
+                    link: 'https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b',
+                },{
+                    id: 3,
+                    title: 'Twitter',
+                    icon: 'fi-social-twitter',
+                    link: 'https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b',
+                }]
+            }
+        },
+        modals: [{
+            id: 1,
+            title: '<h1>Career</h1>',
+            content: [{
                 id: 1,
-                text: 'We are passionate about movies, data and great viewer experience. That’s why we have created a solution that <strong>analyzes movies and TV series</strong> to understand the characteristics which creates a unique fingerprint. We help you as a customer to present the right content at the right time creating a higher engagement and more satisfied/loyal consumers, leading to a better churn rate'
+                text: 'At VIONLABS we are passionate about movies, data and great viewer experience. We want you to accomplish great results together with us in an environment where you have a significant impact on our product and community. We are an international team, we have a lot of fun and we have saved some extra seats in our office cinema for more great people'
             },{
                 id: 2,
-                text: 'We have 4 products but we give you the freedom of choosing what is right for you...'
-            }],
-            infoCircle:[{
-                id: 1,
-                text: 'Discovery'
-            },{
-                id: 2,
-                text: 'Metadata'
+                text: 'We are currently looking for: TECHNICAL PROJECT MANAGER ELASTIC SEARCH DEVELOPER'
             },{
                 id: 3,
-                text: 'Bitframe'
+                text: 'Can’t find a suitable role for you? No worries, send us your CV to xxxx@vionlabs.com or swing by for a coffee at our HQ at St Eriksgatan 63 in Stockholm.'
             },{
                 id: 4,
-                text: 'Vionel Insight'
+                text: 'We look forward hearing from you!'
             }]
-        },
-        vionel: {
-            id: 3,
-            className: 'left',
-            sectionName: 'vionel',
-            title: '<h1>What\'s <br>Vionel™?</h1>',
-            backgroundImage: 'images/vionel.jpg',
-            paragraphs: [{
-                id: 1,
-                text: 'It is our in-house product for demonstrating and showcasing our vast datasets & it\'s customizable capabilities.'
-            },{
-                id: 2,
-                text: 'Vionel™ exists as an app for iPhone, and on the web.'
-            }],
-            layers: [{
-                id: 1,
-                width: '300px',
-                image: 'images/iphone_vionel-small.png',
-                className: 'right'
-            }],
-            socialLinks: [{
-                id: 1,
-                title: 'VIONEL.com',
-                icon: 'fi-mail',
-                link: 'vionel.com',
-            }]
-        },
-        work: {
-            id: 4,
-            className: 'right',
-            sectionName: 'Career',
-            backgroundImage: 'images/independence.jpg',
-            title: '<h1>join our<br>adventure</h1>',
-            paragraphs: [{
-                id: 1,
-                text: 'We are always looking for new talents to work with, send and e-mail and tell us about yourself!'
-            }],
-            socialLinks: [{
-                id: 1,
-                title: 'E-mail',
-                icon: 'fi-mail',
-                link: 'mailto:info@vionlabs.com',
-            }],
-            layers: [{
-                id: 1,
-                image: 'images/treasure-map.png',
-                className: 'left'
-            }]
-        },
-        contact: {
-            id: 5,
-            className: 'contact center',
-            backgroundImage: 'images/info-2.jpg',
-            sectionName: 'Contact',
-            title: '<h1>Interested in what we do or need more information?</h1>',
-            email: 'maximilian.hagerf@gmail.com',
-            phone: '+46 73-6 24 99 34',
-            paragraphs: [{
-                id: 1,
-                text: 'Send us an e-mail and we would love to help you out!'
-            }],
-            socialLinks: [{
-                id: 1,
-                title: 'E-mail',
-                icon: 'fi-mail',
-                link: 'mailto:info@vionlabs.com',
-            },{
-                id: 2,
-                title: 'Facebook',
-                icon: 'fi-social-facebook',
-                link: 'https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b',
-            },{
-                id: 3,
-                title: 'Twitter',
-                icon: 'fi-social-twitter',
-                link: 'https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b',
-            }]
-        }
-    }
+        }]
     };
 
     /*
@@ -162,9 +174,14 @@ angular.module('app', ['ngSanitize',
     if ((window.matchMedia && (window.matchMedia('only screen and (min-resolution: 124dpi), only screen and (min-resolution: 1.3dppx), only screen and (min-resolution: 48.8dpcm)').matches || window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 2.6/2), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (min-device-pixel-ratio: 1.3)').matches)) || (window.devicePixelRatio && window.devicePixelRatio > 1.3)) {
         angular.element('body').addClass('high-density');
     }
+    
     /*
     FUNCTIONS
     *****************/
+    $scope.openModal = function(){
+        
+    };
+
     $scope.slides = function() {
         $scope.slides = 'rendered';
     };
@@ -179,7 +196,7 @@ angular.module('app', ['ngSanitize',
 
     $scope.navigateTo = function(target){
         $('html, body').animate({
-            scrollTop: $('#section' + target).offset().top - 78
+            scrollTop: $('#section' + target).offset().top - 58
         }, 500);
     };
 

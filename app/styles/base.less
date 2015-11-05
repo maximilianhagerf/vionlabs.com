@@ -23,7 +23,7 @@ body{
 	// padding: @grid-xl * 2;
 	font-weight: 600;
 	font-size: 16px;
-	padding-top: 78px;
+	padding-top: 58px;
 	
 }
 
@@ -169,7 +169,7 @@ body{
 	// .gradient(@color: #F5F5F5, @start: rgba(0, 0, 0, 0), @stop: rgba(0, 0, 0, .4), @startPos: 0, @stopPos: 1);
 	.logo{float:left;}
 	// background-color: fade(@color-dark-1, 50%);
-	background-color: @color-dark-1;
+	background-color: fade(@color-dark-1, 80%);
 
 	position: fixed;
 	// top: @grid-md + @grid-xl;
@@ -179,7 +179,7 @@ body{
 	right: 0;
 	list-style: none;
 	margin: 0;
-	padding: 20px 200px;
+	padding: 10px 200px;
 
 	text-align: right;
 	z-index: 100;
@@ -190,8 +190,9 @@ body{
 
 
 .delayed {
-  .transition(all, 0.3s, linear);
+  .transition(opacity, 0.3s, linear);
   opacity: 1;
+
 
   &.ng-hide-add, 
   &.ng-hide-remove{
@@ -338,14 +339,14 @@ body{
 		}
 
 		&_left{
-			.fadeInLeft;
+			.fadeInLeftBig;
 			text-align: left;
 			&-top{
 				&__content{vertical-align: top;}
 			}
 		}
 		&_left-top{
-			.fadeInDown;
+			.fadeInDownBig;
 			text-align: left;
 			&__content{vertical-align: top;}
 		}
@@ -356,32 +357,32 @@ body{
 		}
 
 		&_right{
-			.fadeInRight;
+			.fadeInRightBig;
 			text-align: right;
 		}
 		&_right-top{
-			.fadeInDown;
+			.fadeInDownBig;
 			text-align: right;
 			&__content{vertical-align: top;}
 		}
 		&_right-bottom{
-			.fadeInUp;
+			.fadeInUpBig;
 			text-align: right;
 			&__content{vertical-align: bottom;}
 		}
 
 		&_center{
-			.fadeInUp;
+			.fadeInUpBig;
 			text-align: center;
 			&__content{vertical-align: center;}
 		}
 		&_center-bottom{
-			.fadeInUp;
+			.fadeInUpBig;
 			text-align: center;
 			&__content{vertical-align: bottom;}
 		}
 		&_center-top{
-			.fadeInDown;
+			.fadeInDownBig;
 			text-align: center;
 			&__content{vertical-align: top;}
 		}
