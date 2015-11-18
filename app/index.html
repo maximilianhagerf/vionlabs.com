@@ -4,145 +4,198 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>VIONLABS</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-  <link rel="stylesheet" href="styles/main.css">
-  <!-- build:js scripts/vendor/modernizr.js -->
-  <script src="bower_components/modernizr/modernizr.js"></script>
-  <!-- endbuild -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VIONLABS</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
 </head>
-<body resize ng-app="app" ng-controller="mainCtrl">
-
-<!-- MAIN -->
-<div class="vionlabs" ng-class="{ 'vionlabs__rendered' : slides == 'rendered' }">
-  <div class="vionlabs__wrap">
-    
-    <!-- MENU -->
-    <ul class="themenu">
-      <div class="logo"><img class="logo__content" src="images/vionlabs.png"></div>
-      <button class="button button_hamburger"><span class="button_hamburger_icon fui-list"></span></button>
-      <li class="themenu__item" ng-repeat="item in vionlabs.sections" ng-if="item.sectionName">
-        <button ng-click="navigateTo(item.id)" class="button button_menu" ng-class="{'button_menu_active' : currentSection == $index}">{{item.sectionName}}</button>
-      </li>
-    </ul>
-
-    <!-- SECTIONS -->
-    <div id="section{{::item.id}}"
-    class="{{key}} section {{::item.className}}" 
-    in-view="$inview&&inviewFun(item, $index)" 
-    in-view-options="{ offsetTop: inViewOffset, offsetBottom: -inViewOffset, debounce:50 }" 
-    ng-repeat="(key, item) in vionlabs.sections | 
-    orderBy: orderProp : orderReverse | 
-    limitTo: config.itemsDisplayedInList 
-    track by item.id" 
-    on-finish-render="slides()" 
-    ng-style="::{height: wHeight + 'px'}">
-
-      <background ng-if="::item.backgroundImage" class="background_big" image="::item.backgroundImage"></background>
-      
-      <div ng-show="item.isActive" class="layers">
-        <div class="layers__layer layers__layer_{{::layer.className}} delayed_{{$index}}" ng-repeat="layer in item.layers | orderBy: orderProp : orderReverse | limitTo: config.itemsDisplayedInList track by layer.id">
-          <div class="layers__layer__content layers__layer_{{::layer.className}}__content">
-            <img ng-if="::layer.image" src="{{::layer.image}}" alt="imageId:{{::layer.id}}" style="width:{{::layer.width}}">
-          </div>
-        </div>
-      </div>
-
-      <div class="section__wrap">
-        <h4 class="section__wrap__head" ng-bind-html="::item.sectionName"></h4>
-        <div class="section__wrap__body">
-          <div ng-if="::item.title" ng-bind-html="::item.title"></div>
-          
-          <!-- PARAGRAPHS -->
-          <p ng-if="::item.paragraphs" 
-          ng-bind-html="::paragraph.text"
-          ng-repeat="paragraph in item.paragraphs | 
-          orderBy: orderProp : orderReverse | 
-          limitTo: config.itemsDisplayedInList 
-          track by paragraph.id">
-          </p>
-
-          <!-- SOCIALBUTTONS -->
-          <div class="buttons">
-            <div ng-show="item.isActive" 
-            class="buttons__wrap delayed delayed_{{::$index}} " 
-            ng-if="item.buttons.length > 0" 
-            ng-repeat="link in item.buttons | 
-            orderBy: orderProp : orderReverse | 
-            limitTo: config.itemsDisplayedInList 
-            track by link.id">
-            
-              <a ng-if="link.link" class="button button_social-link" href="{{link.link}}" title="{{link.title}}" target="_blank">
-                <span class="button_social-link__wrap">
-                  <span ng-if="link.icon" class="button_social-link__wrap__icon {{link.icon}}"></span>
-                  <span class="button_social-link__wrap__text">{{link.title}}</span>
-                </span>
-              </a>
-
-              <button ng-if="link.linkId" class="button button_social-link" ng-click="navigateTo(link.linkID)" title="{{link.title}}" >
-                <span class="button_social-link__wrap">
-                  <span ng-if="link.icon" class="button_social-link__wrap__icon {{link.icon}}"></span>
-                  <span class="button_social-link__wrap__text">{{link.title}}</span>
-                </span>
-              </button>
-
-              <button ng-if="link.modalId" class="button button_social-link" ng-click="navigateTo(link.linkID)" title="{{link.title}}" >
-                <span class="button_social-link__wrap">
-                  <span ng-if="link.icon" class="button_social-link__wrap__icon {{link.icon}}"></span>
-                  <span class="button_social-link__wrap__text">{{link.title}}</span>
-                </span>
-              </button>
-
+<body resize vl-scroll ng-app="app" ng-controller="mainCtrl">
+    <!-- MAIN -->
+    <div class="vionlabs" ng-show="slides == 'rendered'"
+    ng-class="{ 'vionlabs__rendered' : slides == 'rendered' }">
+        <div class="vionlabs__wrap">
+            <!-- MENU -->
+            <ul class="themenu" ng-class="{'themenu_transparent':!isTop}">
+                <div class="logo"><img class="logo__content" src="images/vionlabs-2.png"></div>
+                <button class="button button_hamburger"><span class="button_hamburger_icon pe-7s-menu"></span></button>
+                <li ng-if="item.sectionName" class="themenu__item"
+                    ng-repeat="(key, item) in vionlabs.sections |
+                    orderBy: orderProp : orderReverse |
+                    limitTo: config.itemsDisplayedInList
+                    track by item.id">
+                    <button ng-click="navigateTo(item.id)" class="button button_menu" ng-class="{'button_menu_active' : currentSection == item.id}">{{item.sectionName}}</button>
+                </li>
+            </ul>
+            <!-- SECTIONS -->
+            <div class="{{::key}} section-container {{::(section.options.style)?'section-container_'+section.options.style:''}}"
+                bindonce
+                ng-repeat="(key, section) in vionlabs.sections track by section.id"
+                ng-init="section.current = section.items[0].id">
+                <!-- SECTION -->
+                <div id="section{{section.id}}_{{item.id}}"
+                    class="section"
+                    bindonce="section.items"
+                    bo-style="{height: wHeight + 'px'}"
+                    in-view="$inview&&inviewFun(item, section.id, item.id)"
+                    in-view-options="{ offsetTop: inViewOffset, offsetBottom: -inViewOffset, debounce:150 }"
+                    on-finish-render="slides()"
+                    bo-class="{ 'section_{{item.options.align}}' : item.options.align, 'section_{{item.options.style}}' : item.options.style}"
+                    ng-repeat="(key, item) in section.items |
+                    orderBy: orderProp : orderReverse |
+                    limitTo: config.itemsDisplayedInList
+                    track by item.id">
+                    <!-- BACKGROUND -->
+                    <background ng-if="::item.backgroundImage" class="background_big" image="::item.backgroundImage"></background>
+                    <!-- LAYERS -->
+                    <div class="layers"
+                        bo-if="!isDevice && item.layers"
+                        ng-show="item.isActive">
+                        <div bindonce="item.layers"
+                            class="layers__layer layers__layer_{{::layer.className}} delayed_{{$index}}"
+                            ng-repeat="layer in item.layers |
+                            orderBy: orderProp : orderReverse |
+                            limitTo: config.itemsDisplayedInList
+                            track by layer.id">
+                            <div class="layers__layer__content layers__layer_{{::layer.className}}__content">
+                                <img bo-if="::layer.image" bo-src="layer.image" bo-alt="imageId:{{::layer.id}}" style="width:{{::layer.width}}">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- NAVIGATION -->
+                    <button class="button button_navigation delayed_3" 
+                    ng-show="item.isActive"
+                    bindonce="item.navigationButtons"
+                    bo-class="{'button_navigation_{{button.orientation}}':button.orientation}"
+                    ng-click="navigateTo(button.sectionId, button.slideId)"
+                    ng-repeat="(key, button) in item.navigationButtons |
+                    orderBy: orderProp : orderReverse |
+                    limitTo: config.itemsDisplayedInList
+                    track by button.id">
+                    <span class="button_navigation__wrap" bo-class="{'button_navigation_{{button.orientation}}__wrap':button.orientation}" >
+                    <span class="button_navigation__wrap__icon "
+                    bo-class="{
+                    'button_navigation_{{button.orientation}}__wrap__icon':button.orientation,
+                    'pe-7s-angle-down' : button.orientation === 'bottom',
+                    'pe-7s-angle-up' : button.orientation === 'top'
+                    }"></span>
+                    </span>
+                    </button>
+                    <!-- WRAP -->
+                    <div class="section__wrap">
+                        <h4 bo-if="::item.sectionTitle" class="section__wrap__head" bo-html="::item.sectionTitle"></h4>
+                        <div class="section__wrap__body">
+                            <div bo-if="::item.title" bo-html="::item.title"></div>
+                            <!-- PARAGRAPHS -->
+                            <div class="paragraphs"
+                                ng-show="item.isActive" 
+                                bindonce="item.paragraphs"
+                                ng-repeat="paragraph in item.paragraphs |
+                                orderBy: orderProp : orderReverse |
+                                limitTo: config.itemsDisplayedInList
+                                track by paragraph.id">
+                                <p bo-if="::paragraph.text" bo-html="::paragraph.text"></p>
+                                <p bo-if="::paragraph.list">
+                                <ul class="list">
+                                    <!-- LIST -->
+                                    <li bindonce="paragraph.list"
+                                        bo-html="::listItem.text"
+                                        ng-repeat="listItem in paragraph.list |
+                                        orderBy: orderProp : orderReverse |
+                                        limitTo: config.itemsDisplayedInList
+                                        track by listItem.id">
+                                    </li>
+                                </ul>
+                                </p>
+                            </div>
+                            <!-- CIRCLE -->
+                            <div class="info-circle-container" 
+                                bo-if="::item.infoCircle"
+                                ng-class="{'info-circle-container_active':item.isActive}">
+                                <div class="info-circle delayed_{{$index + 1}}" 
+                                    bindonce="item.infoCircle"
+                                    bo-style="{'width': (100 / item.infoCircle.length + '%')}"
+                                    ng-repeat="info in item.infoCircle |
+                                    orderBy: orderProp : orderReverse |
+                                    limitTo: config.itemsDisplayedInList
+                                    track by info.id">
+                                    <div bo-if="::info.icon" class="info-circle__circle">
+                                        <img class="filler" src="images/square.png">
+                                        <div class="info-circle__circle__wrap">
+                                            <div class="info-circle__circle__wrap__icon-wrap">
+                                                <span class="info-circle__circle__wrap__icon-wrap__icon {{::info.icon}}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div bo-if="::info.text" class="info-circle__text">{{::info.text}}</div>
+                                </div>
+                            </div>
+                            <!-- BUTTONS -->
+                            <div class="buttons">
+                                <div class="buttons__wrap delayed delayed_{{$index + 1}} "
+                                    ng-show="item.isActive"
+                                    bindonce="item.buttons"
+                                    ng-repeat="link in item.buttons |
+                                    orderBy: orderProp : orderReverse |
+                                    limitTo: config.itemsDisplayedInList
+                                    track by link.id">
+                                    <a bo-if="link.link" class="button button_social-link" bo-href-i="{{link.link}}" bo-title="link.title" target="_blank">
+                                    <span class="button_social-link__wrap">
+                                    <span bo-if="link.icon" class="button_social-link__wrap__icon {{link.icon}}"></span>
+                                    <span class="button_social-link__wrap__text">{{link.title}}</span>
+                                    </span>
+                                    </a>
+                                    <button bo-if="link.linkId" class="button button_social-link" ng-click="navigateTo(link.linkId)" title="{{link.title}}" >
+                                    <span class="button_social-link__wrap">
+                                    <span bo-if="link.icon" class="button_social-link__wrap__icon {{link.icon}}"></span>
+                                    <span class="button_social-link__wrap__text">{{link.title}}</span>
+                                    </span>
+                                    </button>
+                                    <button bo-if="link.modalId" class="button button_social-link" ng-click="openModal(link.modalId, 'lg')" title="{{link.title}}" >
+                                    <span class="button_social-link__wrap">
+                                    <span bo-if="link.icon" class="button_social-link__wrap__icon {{link.icon}}"></span>
+                                    <span class="button_social-link__wrap__text">{{link.title}}</span>
+                                    </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-
+            <!-- FOOTER -->
+            <div class="footer">
+                <!-- <background ng-if="::vionlabs.info.backgroundImage" class="background_big" image="::vionlabs.info.backgroundImage"></background> -->
+                <div class="footer__wrap">
+                    <div class="footer__wrap__info info">
+                        <a class="info__item" href="mailto:{{vionlabs.info.email}}">
+                        <span class="icon fi-mail"></span>
+                        <span>{{vionlabs.info.email}}</span>
+                        </a>
+                        <span class="info__item">
+                        <span class="icon fi-map"></span>
+                        <span>{{vionlabs.info.adress}}</span>
+                        </span>
+                        <span class="info__item">
+                        <span class="icon fi-telephone"></span>
+                        <span class="">{{vionlabs.info.phone}}</span>
+                        </span>
+                        <span class="info__item_small">
+                        <span>{{vionlabs.info.copyright}}</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="section__wrap__foot">
-
-        </div>
-      </div>
     </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-      <background ng-if="::vionlabs.info.backgroundImage" class="background_big" image="::vionlabs.info.backgroundImage"></background>
-
-      <div class="footer__wrap">
-
-        <div class="footer__wrap__info info">
-
-          <a class="info__item" href="mailto:{{vionlabs.info.email}}" target="_blank">
-            <span class="icon fi-mail"></span>
-            <span>{{vionlabs.info.email}}</span>
-          </a>
-
-          <span class="info__item">
-            <span class="icon fi-map"></span>
-            <span>{{vionlabs.info.adress}}</span>
-          </span>
-
-          <span class="info__item">
-            <span class="icon fi-telephone"></span>
-            <span class="">{{vionlabs.info.phone}}</span>
-          </span>
-
-          <span class="info__item info__item_right">
-            <span>{{vionlabs.info.copyright}}</span>
-          </span>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- MAIN -->
-
-<!-- BLUEIMP -->
+    <!-- /MAIN -->
+    <!-- BLUEIMP -->
     <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
         <div class="slides"></div>
         <a class="prev disabled"><span class="pe-7s-angle-left"></span></a>
@@ -158,91 +211,86 @@
                     <div class="modal-body next"></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left prev">
-                            <i class="glyphicon glyphicon-chevron-left"></i> Previous
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
                         </button>
                         <button type="button" class="btn btn-primary next">
-                            <i class="glyphicon glyphicon-chevron-right"></i> Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                        Next
                         </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<!-- BLUEIMP -->
-
-<!--[if lt IE 7]>
-  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-
-  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-  <script>
-  /*(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    <!-- /BLUEIMP -->
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+    /*(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
     function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-  e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-  e.src='//www.google-analytics.com/analytics.js';
-  r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-  ga('create','UA-XXXXX-X');ga('send','pageview');*/
-  </script>
-  <script>
-  var canvas;
-  var ctx;
-  var exts;
-
-  try {
-    canvas = createElement('canvas');
-    ctx = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    exts = ctx.getSupportedExtensions();
-  }
-  catch (e) {
-  }
-
-  if (ctx !== undefined) {
-    Modernizr.webglextensions = new Boolean(true);
-  }
-  if(exts !== undefined){
-    for (var i = -1, len = exts.length; ++i < len; ){
-      Modernizr.webglextensions[exts[i]] = true;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');*/
+    </script>
+    <script>
+    var canvas;
+    var ctx;
+    var exts;
+    try {
+        canvas = createElement('canvas');
+        ctx = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        exts = ctx.getSupportedExtensions();
     }
-  }
-
-  canvas = undefined;
-
-  </script>
-
-  <!-- build:js scripts/main.js -->
-  <script src="bower_components/jquery/jquery.js"></script>
-  <script src="bower_components/jquery-ui/jquery-ui.js"></script>
-  <script src="bower_components/jquery-ripples/jquery.ripples.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/angular-inview/angular-inview.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-  <script src="scripts/app.js"></script>
-  <!-- endbuild -->
-
-  <!-- build:js scripts/vendor/bootstrap.js -->
-
-  <script src="bower_components/bootstrap/js/affix.js"></script>
-  <script src="bower_components/bootstrap/js/alert.js"></script>
-  <script src="bower_components/bootstrap/js/dropdown.js"></script>
-  <script src="bower_components/bootstrap/js/tooltip.js"></script>
-  <script src="bower_components/bootstrap/js/modal.js"></script>
-  <script src="bower_components/bootstrap/js/transition.js"></script>
-  <script src="bower_components/bootstrap/js/button.js"></script>
-  <script src="bower_components/bootstrap/js/popover.js"></script>
-  <script src="bower_components/bootstrap/js/carousel.js"></script>
-  <script src="bower_components/bootstrap/js/scrollspy.js"></script>
-  <script src="bower_components/bootstrap/js/collapse.js"></script>
-  <script src="bower_components/bootstrap/js/tab.js"></script>
-
-  <script src="bower_components/blueimp-gallery/js/blueimp-helper.js"></script>
-  <script src="bower_components/blueimp-gallery/js/blueimp-gallery.js"></script>
-  <script src="bower_components/blueimp-gallery/js/blueimp-gallery-fullscreen.js"></script>
-  <script src="bower_components/blueimp-gallery/js/blueimp-gallery-indicator.js"></script>
-  <script src="bower_components/blueimp-gallery/js/blueimp-gallery-video.js"></script>
-  <script src="bower_components/blueimp-gallery/js/blueimp-gallery-vimeo.js"></script>
-  <script src="bower_components/blueimp-gallery/js/blueimp-gallery-youtube.js"></script>
-  
-  <!-- endbuild -->
+    catch (e) {
+    }
+    if (ctx !== undefined) {
+        Modernizr.webglextensions = new Boolean(true);
+    }
+    if(exts !== undefined){
+        for (var i = -1, len = exts.length; ++i < len; ){
+            Modernizr.webglextensions[exts[i]] = true;
+        }
+    }
+    canvas = undefined;
+    </script>
+    <!-- build:js scripts/main.js -->
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/jquery-ripples/jquery.ripples.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-inview/angular-inview.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-bindonce/bindonce.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/app.js"></script>
+    <!-- endbuild -->
+    <!-- build:js scripts/vendor/bootstrap.js -->
+    <script src="bower_components/bootstrap/js/affix.js"></script>
+    <script src="bower_components/bootstrap/js/alert.js"></script>
+    <script src="bower_components/bootstrap/js/dropdown.js"></script>
+    <script src="bower_components/bootstrap/js/tooltip.js"></script>
+    <script src="bower_components/bootstrap/js/modal.js"></script>
+    <script src="bower_components/bootstrap/js/transition.js"></script>
+    <script src="bower_components/bootstrap/js/button.js"></script>
+    <script src="bower_components/bootstrap/js/popover.js"></script>
+    <script src="bower_components/bootstrap/js/carousel.js"></script>
+    <script src="bower_components/bootstrap/js/scrollspy.js"></script>
+    <script src="bower_components/bootstrap/js/collapse.js"></script>
+    <script src="bower_components/bootstrap/js/tab.js"></script>
+    <script src="bower_components/blueimp-gallery/js/blueimp-helper.js"></script>
+    <script src="bower_components/blueimp-gallery/js/blueimp-gallery.js"></script>
+    <script src="bower_components/blueimp-gallery/js/blueimp-gallery-fullscreen.js"></script>
+    <script src="bower_components/blueimp-gallery/js/blueimp-gallery-indicator.js"></script>
+    <script src="bower_components/blueimp-gallery/js/blueimp-gallery-video.js"></script>
+    <script src="bower_components/blueimp-gallery/js/blueimp-gallery-vimeo.js"></script>
+    <script src="bower_components/blueimp-gallery/js/blueimp-gallery-youtube.js"></script>
+    <!-- endbuild -->
 </body>
 </html>

@@ -23,7 +23,7 @@ body{
 	// padding: @grid-xl * 2;
 	font-weight: 600;
 	font-size: 16px;
-	padding-top: 58px;
+	// padding-top: 58px;
 	
 }
 
@@ -40,14 +40,52 @@ body{
 	}
 }
 
+.section-container{
+	.clearfix();
+	position: relative;
+
+	&_white{
+		background-color: @color-gray-4;
+	}
+}
+.section-menu{
+	position: absolute;
+	bottom: @grid-md;
+	width: 100%;
+	text-align: center;
+
+	&__wrap{
+		.clearfix();
+		display: inline-block;
+
+		&__item{
+			float: left;
+			position: relative;
+			z-index: @zIndex-1;
+			display: inline-block;
+			vertical-align: bottom;
+		}
+	}
+}
 .section{
+	// &:extend(.extended);
 	position: relative;
 	padding: 0 200px;
 	display: table;
 	width: 100%;
-	min-height: 500px;
+	height: 100%;
+	min-height: 750px;
 	opacity: 0;
-	margin-bottom: 4px;
+	// margin-bottom: 4px;
+	// padding-top: 56px;
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	p{
+		&:extend(.text-shadow);
+	}
 
 	&__wrap{
 		position: relative;
@@ -67,19 +105,19 @@ body{
 	}
 
 	/* SECTION OPTION CLASSES */
-	&.center{text-align: center;}
-	&.left{
+	&_center{text-align: center;}
+	&_left{
 		text-align: left;
 		padding-right: 30%;
 		.section__wrap__body{float: left;}
 	}
-	&.right{
+	&_right{
 		text-align: right;
 		padding-left: 30%;
 		.section__wrap__body{float: right;}
 
 	}
-	&.white{
+	&_white{
 		background-color: @color-gray-4;
 		color: @color-gray-1; 
 		.section__wrap__head{
@@ -95,13 +133,14 @@ body{
 		}
 	}
 	/* SECTION SPECIFIC CLASSES */
-	&.start{}
-	&.contact{}
+	&_start{}
+	&_contact{}
 
 	&:nth-of-type(even){
 		// background-color: @color-light-2;
 
 	}
+	
 	&.inview{
 		.animated; 
 		.fadeIn; 
@@ -109,21 +148,19 @@ body{
 }
 
 .footer{
-	position: relative;
-	padding: 0 200px;
+	.clearfix();
+	padding: @grid-md 200px;
+	bottom: 0;
+	width: 100%;
+	background-color: fade(@color-dark-1, 80%);
 
 	&__wrap{
 		position: relative;
-		max-height: 400px;
-		min-height: 400px;
 
 		.background{
 			opacity: .2;
 		}
 		&__info{
-			position: absolute;
-			bottom: 0;
-			width: 100%;
 		}
 	}
 }
@@ -131,32 +168,33 @@ body{
 .info{
 	.clearfix();
 	padding: @grid-lg 0;
+	text-align: center;
+		a{text-decoration: none;}
+
 	&__item{
 		font-size: 20px;
 		font-weight: 400;
-		color: @color-gray-3;
-		float: left;
-		margin-right: @grid-md;
-		text-shadow: 2px 2px 0 #000;
+		color: @color-light-2;
+		margin: 0 @grid-md;
 
-		&_right{
-			float: right;
-			margin: 0 0 0 @grid-md;
+		.icon,
+		span{
+			vertical-align: middle;
 		}
-
 		.icon{
-			margin-right: @grid-xs;
+			font-size: 30px;
+			margin: 0 @grid-sm;
+		}
+		&_small{
+			margin-top: @grid-md;
+			display: block;
+			color: @color-gray-2
 		}
 	}
 }
 
 .logo{
-
-	text-align: center;
 	display: inline-block;
-	font-family: "Indie Flower";
-	color: @color-dark-3;
-	font-size: 30px;
 	line-height: 0;
 	padding: 10px 0;
 
@@ -166,25 +204,27 @@ body{
 }
 
 .themenu{
-	// .gradient(@color: #F5F5F5, @start: rgba(0, 0, 0, 0), @stop: rgba(0, 0, 0, .4), @startPos: 0, @stopPos: 1);
-	.logo{float:left;}
-	// background-color: fade(@color-dark-1, 50%);
-	background-color: fade(@color-dark-1, 80%);
-
+	.transition(background-color, .2s, ease);
+	.animated;
+	.fadeInDown;
 	position: fixed;
-	// top: @grid-md + @grid-xl;
-	// right: @grid-md + @grid-xl;
+	z-index: @zIndex-3;
 	width: 100%;
 	top: 0;
 	right: 0;
-	list-style: none;
+	background-color: fade(@color-dark-1, 80%);
 	margin: 0;
 	padding: 10px 200px;
-
+	list-style: none;
 	text-align: right;
-	z-index: 100;
+
+	.logo{float:left;}
+
 	&__item{
 		display: inline-block;
+	}
+	&_transparent{
+		background-color: fade(@color-dark-1, 10%);
 	}
 }
 
@@ -192,7 +232,6 @@ body{
 .delayed {
   .transition(opacity, 0.3s, linear);
   opacity: 1;
-
 
   &.ng-hide-add, 
   &.ng-hide-remove{
@@ -211,10 +250,12 @@ body{
 	@selector: ~".delayed_");
 
 .buttons{
-	margin: 0 -@grid-sm;
+	margin: -@grid-sm;
 
 	&__wrap{
 		display: inline-block;
+		vertical-align: top;
+
 	}
 }
 .button{
@@ -237,12 +278,12 @@ body{
 		margin: 4px 0 0px @grid-xs;
 		background: none;
 		color: @color-light-3;
-		border-bottom: 4px solid transparent;
+		border-bottom: 2px solid transparent;
 
 		&_active,
 		&:hover{
 			border-color: fade(@color-light-3, 50%);
-			border-color: @color-vionlabs-1;
+			// border-color: @color-vionlabs-1;
 		}
 	}
 
@@ -251,7 +292,7 @@ body{
 		color: fade(@color-dark-2, 70%);
 		background-color: @color-button-default;
 		border: 1px solid lighten(@color-button-default, 10%);
-		margin: @grid-lg @grid-sm;
+		margin: @grid-sm @grid-sm;
 		padding: 0 @grid-md;
 		font-size: 30px;
 		font-weight: 800;
@@ -266,8 +307,6 @@ body{
 				vertical-align: middle;
 			}
 			&__icon{
-				// position: relative;
-				// top: 1px;
 				padding-right: @grid-sm;
 			}
 			&__text{
@@ -280,54 +319,147 @@ body{
 		&:hover,
 		&:active,
 		&:focus{
-			background-color: @color-light-1;
+			background-color: lighten(@color-button-default, 5%);
 			color: fade(@color-dark-2, 70%);
-			border-color: @color-light-2;
 		}
 	}
 	&_hamburger{
 		padding: @grid-xs;
 		display: none;
+		background: none;
+		font-size: 30px;
+		line-height: 1;
 	}
+	&_close-modal{
+		padding: 0;
+		line-height: 0;
+		font-size: 40px;
+		background: none;
+	}
+	&_section{
+		cursor: pointer;
+		width: 50px;
+		height: 50px;
+		text-align: center;
+		background: none;
+
+		&__dot{
+
+			.border-radius(50%);
+			cursor: pointer;
+			display: block;
+			margin: 0 auto;
+			width: 30px;
+			height: 30px;
+			background-color: @color-gray-2;
+
+			&_active{
+				background-color: @color-gray-1;
+			}
+		}
+	}
+	&_navigation{
+		@navigation-size: 170px;
+
+		width: @navigation-size;
+		overflow: hidden;
+		position: absolute;
+		left: 50%;
+		margin-left: -(@navigation-size / 2);
+		z-index: @zIndex-2;
+		background: none;
+		padding: 0;
+
+		&__wrap{
+			.border-radius(50%);
+			display: block;
+			width: @navigation-size;
+			height: @navigation-size;
+			padding: 0;
+			background-color: fade(@color-light-2, 50%);
+			border: 1px solid;
+			border-color: fade(@color-gray-1, 10%);
+			display: table;
+
+			&__icon{
+				.animated;
+				position: relative;
+				display: table-cell;
+				font-size: 60px;
+				color: fade(@color-dark-2, 50%);
+			}
+		}
+
+		&_top{
+			.animated;
+			.fadeInDown;
+			height: ((@navigation-size/2) * 1.3);
+			top: 0;
+
+			&__wrap{
+				position: absolute;
+				bottom: 0;
+
+				&__icon{
+					vertical-align: bottom;
+				}
+			}
+		}
+
+		&_bottom{
+			.animated;
+			.fadeInUp;
+			height: ((@navigation-size/2) * 0.7);
+			bottom: 0;
+			&__wrap{
+				position: absolute;
+				top: 0;
+				&__icon{
+					vertical-align: top;
+				}
+			}
+		}
+
+		
+		&:focus{
+			.button_navigation__wrap{
+				background-color: fade(@color-light-2, 50%);
+			}
+		}
+		&:hover,
+		&:active{
+			.button_navigation__wrap{
+				background-color: fade(@color-light-3, 80%);
+			}
+			.button_navigation__wrap__icon{
+				.bounce;
+				color: @color-gray-1;
+			}
+		}
+	}	
 }
 
 .background{
-	position: relative;
+	// position: relative;
 	&__image{
 		background-size: cover;
 		background-position: center;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
+		&:extend(.extended);
 	}
 	&_big{
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
+		&:extend(.extended);
 	}
 }
 
 .layers{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+	&:extend(.extended);
 	overflow: hidden;
 
 	&__layer{
 		.animated;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
+		&:extend(.extended);
 		display: table;
-		padding: 78px 200px;
+		padding: 78px 200px 78px 200px;
 
 		&__content{
 			display: table-cell;
@@ -372,22 +504,141 @@ body{
 		}
 
 		&_center{
-			.fadeInUpBig;
+			.fadeInUp;
 			text-align: center;
 			&__content{vertical-align: center;}
 		}
 		&_center-bottom{
-			.fadeInUpBig;
+			.fadeInUp;
 			text-align: center;
 			&__content{vertical-align: bottom;}
 		}
 		&_center-top{
-			.fadeInDownBig;
+			.fadeInDown;
+			margin-top: 56px;
 			text-align: center;
 			&__content{vertical-align: top;}
 		}
 
 	}
+}
+
+.vl-modal{
+	
+	&__header{
+		position: relative;
+		height: 300px;
+		// width: 100%;
+		padding: @grid-xl + @grid-xs @grid-xl @grid-lg @grid-xl;
+
+		h1, 
+		h2, 
+		h3, 
+		h4, 
+		h5, 
+		p{
+			&:extend(.text-shadow);
+			margin: 0;
+		}
+
+		&__wrap{
+			position: relative;
+			width: 100%;
+			height: 100%;
+
+			&__section,
+			&__title{
+				line-height: 0;
+			}
+			&__section{
+
+			}
+			&__title{
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+			.button_close-modal{
+				&:extend(.text-shadow);
+				position: absolute;
+				top: -18px;
+				right: -15px;
+			}
+		}
+	}
+	&__body{
+		padding: @grid-lg 0 @grid-xl 0;
+
+		h1, 
+		h2, 
+		h3, 
+		h4, 
+		h5, 
+		p{
+			padding: 0 @grid-xl;
+			color: @color-gray-1;
+		}
+
+		.buttons{
+			padding: 0 @grid-xl;
+			text-align: center;
+			margin-top: 15px;
+			.button{
+				margin-bottom: 0;
+			}
+		}
+	}
+	&__footer{
+
+	}
+}
+
+.info-circle-container{
+	margin: @grid-lg -@grid-md;
+	&_active{
+		.info-circle{
+			.fadeInUp;
+		}
+	}
+}
+.info-circle{
+	.animated;
+	display: inline-block;
+	vertical-align: top;
+
+	&__circle{
+		.border-radius(50%);
+		position: relative;
+		background-color: @color-dark-3;
+		text-align: center;
+		margin: @grid-md;
+		&__wrap{
+			&:extend(.extended);
+
+			&__icon-wrap{
+				display: table;
+				&:extend(.extended);
+
+				&__icon{
+					display: table-cell;
+					vertical-align: middle;
+					font-size: 50px;
+					color: @color-light-2;
+				}
+			}
+		}
+		
+	}
+	&__text{
+		text-align: center;
+		display: block;
+		padding: 0;
+		text-transform: uppercase;
+	}
+}
+
+.filler{
+	width: 100%;
 }
 
 .blue-imp-items{

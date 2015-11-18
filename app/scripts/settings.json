@@ -1,0 +1,361 @@
+{"vionlabs":{
+    "info": {
+        "email": "info@vionlabs.com",
+        "phone": "08-xxx xxxx",
+        "adress": "St Eriksgatan 63",
+        "backgroundImage": "images/backgrounds/map.jpg",
+        "copyright": "© 2015-2016 VionLabs, inc. All rights reserved."
+    },
+    "sections": {
+        "start": {
+            "id": 1,
+            "sectionName": "home",
+            "items":[{
+                "id": 1,
+                "options":{
+                    "align": "center"
+                },
+                "backgroundImage": "images/adventure.jpg",
+                "sectionTitle": "",
+                "title": "<h1><strong>We enhance your <br>VOD & TV service</strong></h1>",
+                
+                "paragraphs": [{
+                    "id": 1,
+                    "text": "We provide a unique and customised search and recommendation engine for TV and film that truly understands the content<br> and user behaviour."
+                }],
+                "buttons": [{
+                    "id": 1,
+                    "title": "CONTACT US",
+                    "linkId": "4"
+                }],
+                "navigationButtons": [{
+                    "id": 1,
+                    "sectionId": 2,
+                    "slideId": 1,
+                    "orientation": "bottom"
+                }]
+            }]
+        },
+        "about": {
+            "id": 2,
+            "sectionName": "About",
+            "options":{
+                "style": "white"
+            },
+            "items":[{
+                "id": 1,
+                "options":{
+                    "align": "center",
+                    "style": "white"
+                },
+                "sectionTitle": "About",
+                "title": "<h1>WHAT WE DO</h1>",
+
+                "paragraphs": [{
+                    "id": 1,
+                    "text": "We are passionate about film, data and great viewer experience. That is why we have created a solution that analyses movies and TV series to understand the characteristics that together form a unique fingerprint. We help you present the most suitable content to your consumers, resulting in an increased interest and satisfaction with your product as well as a lowered churn rate."
+                }],
+                "footNotes": [{
+                    "id": 1,
+                    "text": "If you want to know more contact us or download our whitepaper."
+                }],
+                "navigationButtons": [{
+                    "id": 1,
+                    "sectionId": 1,
+                    "slideId": 1,
+                    "orientation": "top"
+                },{
+                    "id": 2,
+                    "sectionId": 2,
+                    "slideId": 2,
+                    "orientation": "bottom"
+                }]
+            },{
+                "id": 2,
+                "options":{
+                    "align": "center",
+                    "style": "white"
+                },
+                "sectionTitle": "",
+                "title": "<h1>4 products</h1>",
+
+                "paragraphs": [{
+                    "id": 1,
+                    "text": "suitable for any service or partner, but give you the freedom to choose what is right for you:"
+                }],
+                "infoCircle":[{
+                    "id": 1,
+                    "icon": "pe-7s-compass",
+                    "text": "Discovery VOD"
+                },{
+                    "id": 2,
+                    "icon": "pe-7s-compass",
+                    "text": "Discovery TV/EPG"
+                },{
+                    "id": 3,
+                    "icon": "pe-7s-compass",
+                    "text": "Unified Search"
+                },{
+                    "id": 4,
+                    "icon": "pe-7s-compass",
+                    "text": "Recommendations"
+                }],
+                "footNotes": [{
+                    "id": 1,
+                    "text": "If you want to know more contact us or download our whitepaper."
+                }],
+                "navigationButtons": [{
+                    "id": 1,
+                    "sectionId": 2,
+                    "slideId": 1,
+                    "orientation": "top"
+                },{
+                    "id": 2,
+                    "sectionId": 2,
+                    "slideId": 3,
+                    "orientation": "bottom"
+                }]
+
+            },{
+                "id": 3,
+                "options":{
+                    "align": "left",
+                    "style": "white"
+                },
+                "sectionTitle": "",
+                "title": "<h1>WHY DO WE DO IT</h1>",
+                "layers": [{
+                    "id": 1,
+                    "width": "200px",
+                    "image": "images/why.png",
+                    "className": "right"
+                }],
+                "paragraphs": [{
+                    "id": 1,
+                    "text": "We want to solve a universal issue for movie lovers: what to watch and where to watch it. Your users spend way too much time aimlessly searching for content that isn\"t relevant to them. <br> With 5 years of research behind us we can now proudly deliver an innovative solution to all you providers: "
+                },{
+                    "id": 2,
+                    "list": [{
+                        "id": 1,
+                        "text": "We extract data characteristics from your content and use it to give suitable film and TV recommendations to your users"
+                    },{
+                        "id": 2,
+                        "text": "We analyse meta data like colours, movement, speed, relationships, etc."
+                    },{
+                        "id": 3,
+                        "text": "Unified search that gathers all types of search filters, which will help the user find the right content"
+                    },{
+                        "id": 4,
+                        "text": "We track what device you are on and when (and no more intrusion on your watch history). Your user saves time"
+                    }]
+                }],
+                "navigationButtons": [{
+                    "id": 1,
+                    "sectionId": 2,
+                    "slideId": 2,
+                    "orientation": "top"
+                },{
+                    "id": 2,
+                    "sectionId": 2,
+                    "slideId": 4,
+                    "orientation": "bottom"
+                }]
+            },{
+                "id": 4,
+                "options":{
+                    "align": "center",
+                    "style": "white"
+                },
+                "sectionTitle": "",
+                "title": "<h1>Our story</h1>",
+                "layers": [{
+                    "id": 1,
+                    "width": "200px",
+                    "image": "images/path.png",
+                    "className": "right-bottom"
+                },{
+                    "id": 2,
+                    "width": "200px",
+                    "image": "images/docs.png",
+                    "className": "left-top"
+                }],
+                "paragraphs": [{
+                    "id": 1,
+                    "text": "VIONLABS was founded by Arash Pendari and Klas Källqvist in 2010."
+                },{
+                    "id": 2,
+                    "text": "The idea of VIONLABS is pretty simple, we are trying to solve the pressing issue of controlling the enormous sea of content out there. Today, people are expecting to get access to great entertainment every day, spending hours in front their entertainment systems."
+                },{
+                    "id": 3,
+                    "text": "Despite the massive need, the global market is still fragmented and hard to navigate."
+                },{
+                    "id": 4,
+                    "text": "We all crave entertainment that is relevant, easy to find and easy to access."
+                }],
+                "navigationButtons": [{
+                    "id": 1,
+                    "sectionId": 2,
+                    "slideId": 3,
+                    "orientation": "top"
+                },{
+                    "id": 2,
+                    "sectionId": 3,
+                    "slideId": 1,
+                    "orientation": "bottom"
+                }]
+            }]
+        },
+        "career": {
+            "id": 3,
+            "sectionName": "Career",
+            "items":[{
+                "id": 1,
+                "options":{
+                    "align": "left"
+                },
+                "backgroundImage": "images/independence.jpg",
+                "sectionTitle": "One of us...",
+                "title": "<h1>Do you <br>want to change <br>the world <br>together with us?</h1>",
+                "layers": [{
+                    "id": 1,
+                    "width": "200px",
+                    "image": "images/treasure-map.png",
+                    "className": "right"
+                }],
+                "paragraphs": [{
+                    "id": 1,
+                    "text": "We are always on the hunt for new talents to join VIONLABS"
+                }],
+                "buttons": [{
+                    "id": 1,
+                    "title": "Project Manager",
+                    "icon": "fi-page",
+                    "modalId": 1
+                },{
+                    "id": 2,
+                    "title": "Developer",
+                    "icon": "fi-page",
+                    "modalId": 1
+                }],
+                "navigationButtons": [{
+                    "id": 1,
+                    "sectionId": 2,
+                    "slideId": 4,
+                    "orientation": "top"
+                },{
+                    "id": 2,
+                    "sectionId": 4,
+                    "slideId": 1,
+                    "orientation": "bottom"
+                }]
+            }]
+        },
+        "contact": {
+            "id": 4,
+            "sectionName": "Contact",
+            "items":[{
+                "id": 1,
+                "options":{
+                    "align": "center"
+                },
+                "backgroundImage": "images/info-2.jpg",
+                "sectionTitle": "Contact",
+                "title": "<h1>Got questions or press inquiries?</h1>",
+                "email": "maximilian.hagerf@gmail.com",
+                "phone": "+46 73-6 24 99 34",
+                "paragraphs": [{
+                    "id": 1,
+                    "text": "Please contact xxxx@vionlabs.com"
+                },{
+                    "id": 2,
+                    "text": "Are you with the press? <br>Here are some useful resources. Feel free to use them!"
+                }],
+                "buttons": [{
+                    "id": 1,
+                    "title": "E-mail",
+                    "icon": "fi-mail",
+                    "link": "mailto:info@vionlabs.com"
+                },{
+                    "id": 2,
+                    "title": "Press",
+                    "icon": "fi-download",
+                    "link": "https://www.linkedin.com/pub/maximilian-hagerf/37/b38/85b"
+                }],
+                "navigationButtons": [{
+                    "id": 1,
+                    "sectionId": 3,
+                    "slideId": 1,
+                    "orientation": "top"
+                }]
+            }]
+        }
+    },
+    "modals": {
+        "modal1":{
+            "sectionTitle": "Career",
+            "title": "<h1>ELASTIC SEARCH DEVELOPER</h1>",
+            "backgroundImage": "images/independence.jpg",
+            "paragraphs": [{
+                "id": 1,
+                "text": "At VIONLABS we are passionate about movies, data and great viewer experience. We want you to accomplish great results together with us in an environment where you have a significant impact on our product and community. We are an international team, we have a lot of fun and we have saved some extra seats in our office cinema for more great people"
+            },{
+                "id": 2,
+                "text": "Can’t find a suitable role for you? No worries, send us your CV to xxxx@vionlabs.com or swing by for a coffee at our HQ at St Eriksgatan 63 in Stockholm."
+            },{
+                "id": 3,
+                "text": "We look forward hearing from you!"
+            }],
+            "buttons": [{
+                "id": 1,
+                "title": "E-mail",
+                "icon": "fi-mail",
+                "link": "mailto:info@vionlabs.com"
+            }]
+        },
+        "modal2":{
+            "sectionTitle": "Career",
+            "title": "<h1>TECHNICAL PROJECT MANAGER</h1>",
+            "backgroundImage": "images/independence.jpg",
+            "paragraphs": [{
+                "id": 1,
+                "text": "At VIONLABS we are passionate about movies, data and great viewer experience. We want you to accomplish great results together with us in an environment where you have a significant impact on our product and community. We are an international team, we have a lot of fun and we have saved some extra seats in our office cinema for more great people"
+            },{
+                "id": 2,
+                "text": "Can’t find a suitable role for you? No worries, send us your CV to xxxx@vionlabs.com or swing by for a coffee at our HQ at St Eriksgatan 63 in Stockholm."
+            },{
+                "id": 3,
+                "text": "We look forward hearing from you!"
+            }],
+            "buttons": [{
+                "id": 1,
+                "title": "E-mail",
+                "icon": "fi-mail",
+                "link": "mailto:info@vionlabs.com"
+            }]
+        },
+        "modal3":{
+            "sectionTitle": "Career",
+            "title": "<h1>Work at<br> VionLabs!</h1>",
+            "backgroundImage": "images/independence.jpg",
+            "paragraphs": [{
+                "id": 1,
+                "text": "At VIONLABS we are passionate about movies, data and great viewer experience. We want you to accomplish great results together with us in an environment where you have a significant impact on our product and community. We are an international team, we have a lot of fun and we have saved some extra seats in our office cinema for more great people"
+            },{
+                "id": 2,
+                "text": "We are currently looking for: <br>• TECHNICAL PROJECT MANAGER <br>• ELASTIC SEARCH DEVELOPER"
+            },{
+                "id": 3,
+                "text": "Can’t find a suitable role for you? No worries, send us your CV to xxxx@vionlabs.com or swing by for a coffee at our HQ at St Eriksgatan 63 in Stockholm."
+            },{
+                "id": 4,
+                "text": "We look forward hearing from you!"
+            }],
+            "buttons": [{
+                "id": 1,
+                "title": "E-mail",
+                "icon": "fi-mail",
+                "link": "mailto:info@vionlabs.com"
+            }]
+        }
+    }
+}}

@@ -1,7 +1,32 @@
+/*==========  Bootstrap Overrides  ==========*/
+.modal-dialog{margin: @grid-xl 200px;}
+.modal-content{.border-radius(0);}
+@media screen and (min-width: @screen-sm-min) {
+    .modal-dialog {
+        width: 700px;
+        margin: @grid-xl auto;
+    }
+}
+
 /*==========  Non-Mobile First Method  ==========*/
+// Extra big for Twitter Bootstrap
+
+@media screen and (min-width: 1400px) {
+  .section,
+    .themenu,
+    .layers__layer,
+    .footer{
+        padding-left: 18%;
+        padding-right: 18%;
+    }
+}
+@media screen and (min-width: 1400px) {}
+@media screen and (min-width: 1600px) {}
+@media screen and (min-width: 1900px) {}
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
+
     .section,
     .themenu,
     .layers__layer,
@@ -13,6 +38,7 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
+
     .section,
     .themenu,
     .layers__layer,
@@ -25,21 +51,67 @@
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
 
+    .info-circle__circle {
+        width: 60px;
+        height: 60px;
+    }
+    .info-circle__circle__icon {
+        font-size: 35px;
+    }
+    .info-circle__text {
+        font-size: 12px;
+    }
+    .vl-modal__body{
+        padding: 15px 0 10px 0;
+        
+        h1, 
+        h2, 
+        h3, 
+        h4, 
+        h5, 
+        p{
+            padding: 0 10px;
+        }
+    }
+    .vl-modal__header {
+        height: 200px;
+        padding: 18px 10px 10px 10px;
+    }
+    .vl-modal__header__wrap .button_close-modal {
+        top: -13px;
+        right: -3px;
+        font-size: 30px;
+    }
+    body{
+        padding-top: 0;
+    }
+    .high-density p, p{
+        font-size: 14px;
+        font-weight: 400;
+        // text-align: left;
+    }
+    .modal-dialog{margin: 5px;}
+    
+    .themenu{
+        padding: 0 5px;}
+
     .section,
     .section.left,
     .section.right,
-    .themenu,
     .layers__layer,
     .footer{
         padding-left: 5px;
         padding-right: 5px;
     }
+    .logo {
+        padding: 10px 5px;
+    }
     .section__wrap{
-    background: fade(@color-dark-1, 70%);
+    // background: fade(@color-dark-1, 70%);
 
     }
     .button_hamburger{display: inline-block;}
-    .themenu{
+    .themenu__item{
         display: none;
 
     }
@@ -59,22 +131,29 @@
     .job__wrap__head__item_right{
         text-align: left;
     }
-    .logo{width: 100%;}
+    // .logo{width: 100%;}
     // .background_big{
     //     height: 150px;
     // }
     .job__wrap__head {
         padding: 5px 50px;
     }
+    .buttons {
+        margin: 0 -5px;
+    }
     .job {
         padding: 15px 0;
     }
     .button_social-link {
-        margin: 10px 3px;
+        margin: 10px 5px;
         padding: 0 12px;
     }
     .button_social-link__wrap__text{
-        display: none;
+        // display: none;
+        font-size: 14px;
+    }
+    .button_social-link__wrap{
+        height: 40px;
     }
     p{
         font-size: 18px;
@@ -86,8 +165,15 @@
         padding: 0;
     }
     .button_social-link__wrap__icon{
-        font-size: 60px;
+        // font-size: 60px;
         padding: 0 3px;
+    }
+    .info__item{
+        margin: 0;
+        clear: both;
+        float: none;
+        display: block;
+        font-size: 18px;
     }
 }
 

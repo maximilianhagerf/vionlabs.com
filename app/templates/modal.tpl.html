@@ -1,0 +1,51 @@
+<div class="vl-modal">
+    <div class="vl-modal__header">
+        <background ng-if="::modalContent.backgroundImage" class="background_big" image="::modalContent.backgroundImage"></background>
+        <div class="vl-modal__header__wrap">
+            <h4 class="vl-modal__header__wrap__section" ng-bind-html="::modalContent.sectionTitle"></h4>
+            <div class="vl-modal__header__wrap__title" ng-bind-html="::modalContent.title">I'm a modal!</div>
+            <button class="button button_close-modal" type="button" ng-click="closeModal()"><span class="pe-7s-close-circle"></span></button>
+        </div>
+    </div>
+    <div class="vl-modal__body">
+        <!-- PARAGRAPHS -->
+        <p ng-if="::modalContent.paragraphs"
+        ng-bind-html="::paragraph.text"
+        ng-repeat="paragraph in modalContent.paragraphs |
+        orderBy: orderProp : orderReverse |
+        limitTo: config.itemsDisplayedInList
+        track by paragraph.id">
+        </p>
+        <!-- BUTTONS -->
+        <div class="buttons">
+            <div class="buttons__wrap delayed delayed_{{::$index}} "
+                ng-if="modalContent.buttons.length > 0"
+                ng-repeat="link in modalContent.buttons |
+                orderBy: orderProp : orderReverse |
+                limitTo: config.itemsDisplayedInList
+                track by link.id">
+                <a ng-if="link.link" class="button button_social-link" href="{{link.link}}" title="{{link.title}}" target="_blank">
+                <span class="button_social-link__wrap">
+                <span ng-if="link.icon" class="button_social-link__wrap__icon {{link.icon}}"></span>
+                <span class="button_social-link__wrap__text">{{link.title}}</span>
+                </span>
+                </a>
+                <button ng-if="link.linkId" class="button button_social-link" ng-click="navigateTo(link.linkId)" title="{{link.title}}" >
+                <span class="button_social-link__wrap">
+                <span ng-if="link.icon" class="button_social-link__wrap__icon {{link.icon}}"></span>
+                <span class="button_social-link__wrap__text">{{link.title}}</span>
+                </span>
+                </button>
+                <button ng-if="link.modalId" class="button button_social-link" ng-click="openModal(link.modalId, 'lg')" title="{{link.title}}" >
+                <span class="button_social-link__wrap">
+                <span ng-if="link.icon" class="button_social-link__wrap__icon {{link.icon}}"></span>
+                <span class="button_social-link__wrap__text">{{link.title}}</span>
+                </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="vl-modal__footer">
+        <!-- <button class="btn btn-primary" type="button" ng-click="ok()">OK</button> -->
+    </div>
+</div>
